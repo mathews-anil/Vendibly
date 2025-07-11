@@ -1,0 +1,104 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+:root {
+    --background: #f8f9ff;
+    --foreground: #242e49;
+    --foreground-copy: #4f565e;
+    --app-orange: #ff6a3d;
+    --app-green: #00c999;
+    --app-blue: #03133d;
+    --app-slate: #374151;
+}
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-foreground-copy: var(--foreground-copy);
+    --color-app-orange: var(--app-orange);
+    --color-app-green: var(--app-green);
+    --color-app-blue: var(--app-blue);
+    --color-app-slate: var(--app-slate);
+    --font-outfit: var(--font-outfit);
+    --font-inter: var(--font-inter);
+    --font-be-vietnam-pro: var(--font-be-vietnam-pro);
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--background);
+    color: var(--foreground);
+}
+
+@layer base {
+    section {
+        /* @apply py-10 sm:py-20 2xl:py-36; */
+        @apply py-0 sm:py-0 2xl:py-0;
+    }
+}
+
+@layer components {
+    .wrapper {
+        @apply max-w-[calc(1180px+32px)] w-full px-4 mx-auto;
+    }
+    .title-lg {
+        @apply text-[40px]/[46px] md:text-[50px]/[61px] font-outfit font-semibold text-[#262E36];
+    }
+    .title {
+        @apply text-4xl leading-[40px] md:text-[40px] md:leading-[56px] lg:text-5xl lg:leading-[61px] font-outfit font-semibold text-foreground;
+    }
+    .text-copy {
+        @apply text-sm/[20px] md:text-base/[22.4px] lg:text-lg/[28px] font-inter text-foreground-copy;
+    }
+    .center {
+        @apply flex justify-center items-center;
+    }
+    .img {
+        @apply w-full h-full object-cover;
+    }
+    .input {
+        @apply w-full px-2 lg:px-3 xl:px-5 py-3 lg:py-5 xl:py-6 bg-[#FCFCFD] text-xs sm:text-base lg:text-lg text-foreground-copy border border-[#F1F1F3] rounded-md sm:rounded-lg focus:ring-2 focus:ring-app-orange focus:border-transparent mt-3 outline-0 placeholder:text-xs sm:placeholder:text-base/[18px] lg:placeholder:text-xl/[20px] placeholder:text-foreground-copy;
+    }
+    .label {
+        @apply text-sm/[20px] md:text-base/[22.4px] lg:text-lg/[28px] text-foreground font-medium font-outfit;
+    }
+    .contact-card {
+        @apply max-w-full w-full  bg-[#FCFCFD] text-center border border-[#F1F1F3] rounded-lg p-7.5 space-y-5;
+    }
+    .contact-icon-card {
+        @apply size-[52px] mx-auto flex justify-center items-center bg-[#F7F7F8] border border-[#F1F1F3] rounded-lg;
+    }
+    .contact-card-text {
+        @apply font-be-vietnam-pro text-sm/[20px] md:text-base/[22.4px] lg:text-lg/[28px] text-foreground-copy;
+    }
+}
+
+@media (min-width: 1536px) {
+    .cta {
+        transform: translateY(95%);
+    }
+}
+
+
+@media (min-width: 1650px) {
+    .cta-bg {
+        transform: translateY(-10%);
+    }
+}
+
+
+/* @media (max-width: 1500px) {
+    .cta {
+        transform: translateY(45%);
+    }
+} */
