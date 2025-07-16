@@ -11,41 +11,57 @@ import gsap, { Power4 } from "gsap";
 import { useRef } from "react";
 
 const features = [
-  { label: "Manage up to 5 vendors" },
-  { label: "Smart renewal alerts" },
-  { label: "Secure contract vault" },
-  { label: "Mobile app", disabled: true },
+  { label: "Manage up to 5 vendors", disabled: false },
+  { label: "Smart renewal reminders" },
+  { label: "Auto-organized vendor vault" },
+  { label: "Basic calendar view (30 days)" },
+  { label: "Email inbox sync (1 account)" },
+
   { label: "Unlimited vendors" },
-  { label: "AI contract summaries" },
-  { label: "Renewal predictions" },
+  { label: "AI-powered contract summaries" },
+  { label: "Full calendar view" },
+  { label: "Exportable reports (CSV, PDF)" },
   { label: "Priority support" },
+
   { label: "Everything in Pro" },
   { label: "Shared team dashboard" },
   { label: "Slack alerts" },
-  { label: "Vendor performance tracking" },
+  { label: "Team access with roles" },
+  { label: "Vendor tags and folders" },
+  { label: "Advanced export options" },
 ];
 
 const pricing = [
   {
     title: "Free",
     price: 0,
-    subtitle: "Getting started",
-    features: [features[0], features[1], features[2], features[3]],
+    subtitle: "For getting started with vendor control",
+    features: [features[0], features[1], features[2], features[3], features[4]],
     icon: <IconGems className="w-8 lg:w-10" />,
+    url: "https://forms.gle/tJUF8kug3T4PfaCs5",
   },
   {
     title: "Pro",
     price: 9,
-    subtitle: "Power users & solopreneurs",
-    features: [features[4], features[5], features[6], features[7]],
+    subtitle: "For power users and solo founders",
+    features: [features[5], features[6], features[7], features[8], features[9]],
     icon: <IconDiamond className="w-8 lg:w-10" />,
+    url: "https://forms.gle/tJUF8kug3T4PfaCs5",
   },
   {
     title: "Plus",
     price: 19,
-    subtitle: "Teams & growing startups",
-    features: [features[8], features[9], features[10], features[11]],
+    subtitle: "For teams and growing startups",
+    features: [
+      features[10],
+      features[11],
+      features[12],
+      features[13],
+      features[14],
+      features[15],
+    ],
     icon: <IconGems className="w-8 lg:w-10" />,
+    url: "https://forms.gle/tJUF8kug3T4PfaCs5",
   },
 ];
 
@@ -139,8 +155,8 @@ const PricingSection = () => {
                 </div>
               </div>
               <LinkButton
-                href="/login"
-                text="Get Started"
+                href={item.url}
+                text="Get early access to this plan"
                 className={cn(
                   "w-full h-12 mt-6 lg:mt-12 lg:h-[54px] bg-transparent rounded-[10px] border border-app-orange hover:shadow-[0px_10px_20px_rgba(255,106,61,0.25)]",
                   index === 1

@@ -81,6 +81,12 @@ body {
     .contact-card-text {
         @apply font-be-vietnam-pro text-sm/[20px] md:text-base/[22.4px] lg:text-lg/[28px] text-foreground-copy;
     }
+    .doc-title {
+        @apply text-lg/[23px] md:text-xl/[26px] lg:text-2xl/[31px] font-semibold font-outfit;
+    }
+    .doc-text {
+        @apply text-xs/[18px] sm:text-sm/[22px] lg:text-base/[27px] font-inter text-foreground-copy whitespace-pre-wrap;
+    }
 }
 
 @media (min-width: 1536px) {
@@ -89,13 +95,11 @@ body {
     }
 }
 
-
 @media (min-width: 1650px) {
     .cta-bg {
         transform: translateY(-10%);
     }
 }
-
 
 /* @media (max-width: 1500px) {
     .cta {

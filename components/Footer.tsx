@@ -3,15 +3,15 @@ import Link from "next/link";
 const links = [
   {
     title: "Contact Us",
-    href: "/Contact",
+    href: "/contact",
   },
   {
     title: "Privacy Policy",
-    href: "/privacy-policy",
+    href: "/privacy",
   },
   {
     title: "Terms & Conditions",
-    href: "/terms-and-privacy",
+    href: "/terms",
   },
 ];
 

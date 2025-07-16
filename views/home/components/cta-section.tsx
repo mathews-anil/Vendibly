@@ -47,8 +47,8 @@ const CtaSection = () => {
               so you can explore the full power of Vendibly.
             </p>
             <LinkButton
-              text={"Get organized for free"}
-              href={"#"}
+              text={"Get early access"}
+              href={"https://forms.gle/tJUF8kug3T4PfaCs5"}
               className=" bg-app-slate mt-8 hover:shadow-[0px_10px_20px_rgba(55,65,81,0.25)]"
               icon={<IconArrowRightUp className="w-6 h-6" />}
               iconSize={24}

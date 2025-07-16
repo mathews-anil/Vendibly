@@ -57,21 +57,24 @@ const HeroSection = () => {
           </div>
 
           <div className="space-y-4.5 xl:w-full max-w-[460px] md:max-w-[600px] mx-auto">
-            <h1 className="title-lg">
-              Finally, a smarter way to manage all your vendors.
-            </h1>
-            <p className="text-sm md:text-base font-inter text-foreground-copy leading-[27px]">
-              No more messy spreadsheets, surprise renewals, or contract
-              guesswork.
-              <br className="xl:block hidden" /> Vendibly puts everything in one
-              place — so you stay in control.
-            </p>
+            <h1 className="title-lg">Finally, vendor chaos under control.</h1>
+            <div className="text-sm md:text-base font-inter text-foreground-copy leading-[27px]">
+              <p className="">
+                Vendibly connects to your inbox, finds every contract and
+                renewal (like Canva, Google Workspace, Zoom), and turns the
+                chaos into one clean dashboard.
+              </p>
+              <p className="mt-2">
+                No more spreadsheets. No more surprise renewals. No more
+                guesswork.
+              </p>
+            </div>
           </div>
 
           <div>
             <LinkButton
-              href={"#"}
-              text={"Get organized for free"}
+              href={"https://forms.gle/tJUF8kug3T4PfaCs5"}
+              text={"Get early access"}
               icon={<IconArrowRightUp className="w-6 h-6" />}
               className="rounded-[12px] h-[56px]"
               iconSize={24}
