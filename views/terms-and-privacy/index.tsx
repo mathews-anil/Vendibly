@@ -47,7 +47,7 @@ const TermsAndPrivacy = () => {
                                 To access most features, you’ll need to create
                                 an account. You agree to:
                             </p>
-                            <ul className="list-inside list-disc">
+                            <ul className="list-inside list-disc max-md:indent-4">
                                 <li>
                                     Provide accurate and complete information
                                 </li>
@@ -68,7 +68,7 @@ const TermsAndPrivacy = () => {
                         <h2 className="doc-title">Use of Our Services</h2>
                         <div className="doc-text space-y-2">
                             <p>Vendibly offers tools to help you:</p>
-                            <ul className="list-inside list-disc">
+                            <ul className="list-inside list-disc max-md:indent-4">
                                 <li>Manage and track vendor relationships</li>
                                 <li>
                                     Sync business communications (e.g., email)
@@ -86,7 +86,7 @@ const TermsAndPrivacy = () => {
                                 and in accordance with these Terms.
                             </p>
                             <p>You must not:</p>
-                            <ul className="list-inside list-disc">
+                            <ul className="list-inside list-disc max-md:indent-4">
                                 <li>
                                     Use Vendibly to harass, exploit, or
                                     impersonate anyone
@@ -120,7 +120,7 @@ const TermsAndPrivacy = () => {
                                 Our use of your data is governed by our Privacy
                                 Policy. In short:
                             </p>
-                            <ul className="list-inside list-disc">
+                            <ul className="list-inside list-disc max-md:indent-4">
                                 <li className="font-bold">
                                     We don’t sell your data
                                 </li>
@@ -144,7 +144,7 @@ const TermsAndPrivacy = () => {
                                 (e.g., Gmail, Outlook, Amazon, or other
                                 marketplaces). When you do:
                             </p>
-                            <ul className="list-inside list-disc">
+                            <ul className="list-inside list-disc max-md:indent-4">
                                 <li>
                                     You authorize us to access the scopes of
                                     data needed for platform functionality
@@ -191,7 +191,7 @@ const TermsAndPrivacy = () => {
                                 Some parts of Vendibly may require a paid
                                 subscription
                             </p>
-                            <ul className="list-inside list-disc">
+                            <ul className="list-inside list-disc max-md:indent-4">
                                 <li>
                                     Pricing and billing terms are described at
                                     vendibly.ai pricing section (or provided
@@ -221,7 +221,7 @@ const TermsAndPrivacy = () => {
                                 Vendibly may suspend or terminate your access
                                 if:
                             </p>
-                            <ul className="list-inside list-disc">
+                            <ul className="list-inside list-disc max-md:indent-4">
                                 <li>You violate these Terms</li>
                                 <li>You misuse or abuse the platform</li>
                                 <li>Required by law or court order</li>
@@ -256,7 +256,7 @@ const TermsAndPrivacy = () => {
                                 The Services are provided “as is” without
                                 warranty of any kind. We don’t guarantee:
                             </p>
-                            <ul className="list-inside list-disc">
+                            <ul className="list-inside list-disc max-md:indent-4">
                                 <li>
                                     That the Services will be error-free,
                                     uninterrupted, or secure
@@ -284,7 +284,7 @@ const TermsAndPrivacy = () => {
                                 To the maximum extent permitted by law, Vendibly
                                 is not liable for:
                             </p>
-                            <ul className="list-inside list-disc">
+                            <ul className="list-inside list-disc max-md:indent-4">
                                 <li>
                                     Any indirect, incidental, or consequential
                                     damages
