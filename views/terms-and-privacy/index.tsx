@@ -5,7 +5,7 @@ const TermsAndPrivacy = () => {
         <section className="relative py-10 sm:py-20 2xl:py-36 !pb-0 lg:pb-1.75">
             <div className="absolute left-0 top-0 w-full h-fit isolate z-[-1] max-lg:hidden">
                 <Image
-                    src={"/imgs/Hero.PNG"}
+                    src={"/imgs/Hero.png"}
                     alt={"top-hero-bg"}
                     width={1920}
                     height={900}

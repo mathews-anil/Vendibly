@@ -41,7 +41,7 @@ const HeroSection = () => {
       <div className="grid xl:grid-cols-[458px_auto] gap-10 w-full h-full wrapper">
         {/* Texts */}
         <div
-          className="w-full space-y-6 xl:space-y-10.5 flex flex-col xl:items-start items-center max-xl:text-center -translate-x-5 opacity-0"
+          className="w-full space-y-4.5 sm:space-y-6 xl:space-y-10.5 flex flex-col xl:items-start items-center max-xl:text-center -translate-x-5 opacity-0"
           ref={leftElement}
         >
           <div className="max-w-[368px] w-full h-10 flex items-center gap-2.5 p-1.25  bg-white rounded-[80px] max-lg:hidden">
@@ -56,9 +56,9 @@ const HeroSection = () => {
             </div>
           </div>
 
-          <div className="space-y-4.5 xl:w-full max-w-[460px] md:max-w-[600px] mx-auto">
+          <div className="space-y-3 lg:space-y-4.5 xl:w-full max-w-[460px] md:max-w-[600px] mx-auto">
             <h1 className="title-lg">Finally, vendor chaos under control.</h1>
-            <div className="text-sm md:text-base font-inter text-foreground-copy leading-[27px]">
+            <div className="text-sm/5 md:text-base/[27px] font-inter text-foreground-copy">
               <p className="">
                 Vendibly connects to your inbox, finds every contract and
                 renewal (like Canva, Google Workspace, Zoom), and turns the

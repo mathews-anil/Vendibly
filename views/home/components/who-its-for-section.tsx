@@ -12,236 +12,232 @@ import Image from "next/image";
 import { useRef } from "react";
 
 const options = [
-    {
-        title: "Creators",
-        icon: <IconLeadership />,
-        text: (
-            <p className="text-sm/[18px] sm:text-base/[24px] text-foreground-copy font-inter">
-                Manage sponsors and tools like{" "}
-                <span className="font-semibold">Canva</span> or{" "}
-                <span className="font-semibold">ConvertKit,</span> without the
-                mess.
-            </p>
-        ),
-    },
-    {
-        title: "Freelancers",
-        icon: <IconJob />,
-        text: (
-            <p className="text-sm/[18px] sm:text-base/[24px] text-foreground-copy font-inter">
-                Keep track of contracts and apps like{" "}
-                <span className="font-semibold">Notion</span> or{" "}
-                <span className="font-semibold">Google Workspace,</span> all in
-                one place.
-            </p>
-        ),
-    },
-    {
-        title: "Startups",
-        icon: <IconAmbient />,
-        text: (
-            <p className="text-sm/[18px] sm:text-base/[24px] text-foreground-copy font-inter">
-                Stay on top of services like{" "}
-                <span className="font-semibold"> Figma, Stripe,</span> and{" "}
-                <span className="font-semibold">AWS,</span> automatically.
-            </p>
-        ),
-    },
-    {
-        title: "Agencies",
-        icon: <IconCheckList />,
-        text: (
-            <p className="text-sm/[18px] sm:text-base/[24px] text-foreground-copy font-inter">
-                Track recurring tools like{" "}
-                <span className="font-semibold">Slack, Semrush,</span> and{" "}
-                <span className="font-semibold">Adobe</span> across every
-                client.
-            </p>
-        ),
-    },
+  {
+    title: "Creators",
+    icon: <IconLeadership />,
+    text: (
+      <p className="text-sm/[18px] sm:text-base/[24px] text-foreground-copy font-inter">
+        Manage sponsors and tools like{" "}
+        <span className="font-semibold">Canva</span> or{" "}
+        <span className="font-semibold">ConvertKit,</span> without the mess.
+      </p>
+    ),
+  },
+  {
+    title: "Freelancers",
+    icon: <IconJob />,
+    text: (
+      <p className="text-sm/[18px] sm:text-base/[24px] text-foreground-copy font-inter">
+        Keep track of contracts and apps like{" "}
+        <span className="font-semibold">Notion</span> or{" "}
+        <span className="font-semibold">Google Workspace,</span> all in one
+        place.
+      </p>
+    ),
+  },
+  {
+    title: "Startups",
+    icon: <IconAmbient />,
+    text: (
+      <p className="text-sm/[18px] sm:text-base/[24px] text-foreground-copy font-inter">
+        Stay on top of services like{" "}
+        <span className="font-semibold"> Figma, Stripe,</span> and{" "}
+        <span className="font-semibold">AWS,</span> automatically.
+      </p>
+    ),
+  },
+  {
+    title: "Agencies",
+    icon: <IconCheckList />,
+    text: (
+      <p className="text-sm/[18px] sm:text-base/[24px] text-foreground-copy font-inter">
+        Track recurring tools like{" "}
+        <span className="font-semibold">Slack, Semrush,</span> and{" "}
+        <span className="font-semibold">Adobe</span> across every client.
+      </p>
+    ),
+  },
 ];
 
 const offerings = [
-    {
-        title: "Email sync",
-        description:
-            "Vendibly auto-scans your inbox to find every vendor, contract, and renewal.",
-        icon: "/icons/email-sync.png",
-    },
-    {
-        title: "Smart renewal reminders",
-        description:
-            "Get alerts before contracts renew, so you can cancel or renegotiate in time.",
-        icon: "/icons/smart-renewal.png",
-    },
-    {
-        title: "Auto-organized vault",
-        description:
-            "All your contracts and invoices, finally in one place, searchable and stress-free.",
-        icon: "/icons/auto-organized.png",
-    },
-    {
-        title: "Renewal calendar",
-        description:
-            "See all upcoming charges and contract deadlines in one visual calendar.",
-        icon: "/icons/renewal-calendar.png",
-    },
-    {
-        title: "Downloadable reports",
-        description:
-            "Export clean summaries of vendor activity, payments, and renewal dates.",
-        icon: "/icons/downloadable-report.png",
-    },
-    {
-        title: "AI-powered contract insights",
-        description:
-            "Skip the legalese. Vendibly highlights key terms, notice periods, and risks.",
-        icon: "/icons/ai-powered.png",
-    },
-    {
-        title: "Shared team access",
-        description:
-            "Manage vendors together with shared access, roles, and built-in clarity.",
-        icon: "/icons/shared-team.png",
-    },
+  {
+    title: "Email sync",
+    description:
+      "Vendibly auto-scans your inbox to find every vendor, contract, and renewal.",
+    icon: "/icons/email-sync.png",
+  },
+  {
+    title: "Smart renewal reminders",
+    description:
+      "Get alerts before contracts renew, so you can cancel or renegotiate in time.",
+    icon: "/icons/smart-renewal.png",
+  },
+  {
+    title: "Auto-organized vault",
+    description:
+      "All your contracts and invoices, finally in one place, searchable and stress-free.",
+    icon: "/icons/auto-organized.png",
+  },
+  {
+    title: "Renewal calendar",
+    description:
+      "See all upcoming charges and contract deadlines in one visual calendar.",
+    icon: "/icons/renewal-calendar.png",
+  },
+  {
+    title: "Downloadable reports",
+    description:
+      "Export clean summaries of vendor activity, payments, and renewal dates.",
+    icon: "/icons/downloadable-report.png",
+  },
+  {
+    title: "AI-powered contract insights",
+    description:
+      "Skip the legalese. Vendibly highlights key terms, notice periods, and risks.",
+    icon: "/icons/ai-powered.png",
+  },
+  {
+    title: "Shared team access",
+    description:
+      "Manage vendors together with shared access, roles, and built-in clarity.",
+    icon: "/icons/shared-team.png",
+  },
 ];
 
 const WhoItForSection = () => {
-    const section = useRef(null);
-    const header = useRef(null);
-    const offeringCard = useRef(null);
+  const section = useRef(null);
+  const header = useRef(null);
+  const offeringCard = useRef(null);
 
-    useGSAP(
-        () => {
-            gsap.timeline({
-                scrollTrigger: {
-                    trigger: section.current,
-                    start: "top 80%",
-                },
+  useGSAP(
+    () => {
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: section.current,
+            start: "top 80%",
+          },
 
-                defaults: { ease: Power4.easeInOut, duration: 0.5 },
-            })
-                .to(header.current, { autoAlpha: 1 })
-                .to("._cards", { autoAlpha: 1, y: 0, stagger: 0.1 }, "-=0.5");
+          defaults: { ease: Power4.easeInOut, duration: 0.5 },
+        })
+        .to(header.current, { autoAlpha: 1 })
+        .to("._cards", { autoAlpha: 1, y: 0, stagger: 0.1 }, "-=0.5");
 
-            gsap.to(offeringCard.current, {
-                opacity: 1,
-                y: 0,
-                ease: Power4.easeInOut,
-                duration: 0.8,
+      gsap.to(offeringCard.current, {
+        opacity: 1,
+        y: 0,
+        ease: Power4.easeInOut,
+        duration: 0.8,
 
-                scrollTrigger: {
-                    trigger: offeringCard.current,
-                    start: "top 90%",
-                },
-            });
+        scrollTrigger: {
+          trigger: offeringCard.current,
+          start: "top 90%",
         },
-        { scope: section }
-    );
-    return (
-        <section
-            ref={section}
-            id="who-its-for"
-            className="relative sm:pt-24 2xl:pt-36.75 pb-16 xl:pb-24 2xl:pb-[140px] overflow-hidden scroll-mt-28 lg:scroll-mt-40"
-        >
-            <div className="wrapper">
+      });
+    },
+    { scope: section },
+  );
+  return (
+    <section
+      ref={section}
+      id="who-its-for"
+      className="relative sm:pt-24 2xl:pt-36.75 pb-16 xl:pb-24 2xl:pb-[140px] overflow-hidden scroll-mt-28 lg:scroll-mt-40"
+    >
+      <div className="wrapper">
+        <SectionHeader
+          text="Benefits"
+          title="Who It's For"
+          className="mb-10.5 opacity-0"
+          ref={header}
+        />
+
+        {/* Content */}
+        <div>
+          {/* Options */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4.5">
+            {options.map((item, index) => (
+              <div
+                key={index}
+                className={cn(
+                  "px-5.5 py-8.5 bg-white center flex-col gap-5 md:gap-7.5 rounded-3xl hover:shadow-[-16.81px_50.44px_84.06px_rgba(31,29,85,0.05)] border-b border-b-transparent hover:border-b-app-green transition-all duration-300 ease-in-out",
+                  "_cards opacity-0 text-center",
+                )}
+              >
+                <div className="size-20 rounded-full border-2 border-[#0E0637]/[18%] center">
+                  {item.icon}
+                </div>
+                <p className="text-base sm:text-[20px] font-medium font-outfit">
+                  {item.title}
+                </p>
+                <>{item.text}</>
+              </div>
+            ))}
+          </div>
+
+          {/* Offering */}
+          <div
+            ref={offeringCard}
+            className="w-full py-10 lg:py-14.5 px-8 lg:px-12.5 rounded-4xl md:rounded-[44px] bg-white flex flex-col lg:flex-row gap-14 lg:gap-0 mt-20 md:mt-[148px] opacity-0 translate-y-10 scroll-mt-28 lg:scroll-mt-40"
+            id="what-we-are-offering"
+          >
+            <div className="shrink-0 lg:border-r-2 border-r-black/5 pr-8">
+              <div className="max-w-[298px] w-full">
                 <SectionHeader
-                    text="Benefits"
-                    title="Who It's For"
-                    className="mb-10.5 opacity-0"
-                    ref={header}
+                  title="What We Are Offering"
+                  text="Features"
+                  className="items-start text-left mb-2.5 lg:mb-4"
                 />
-
-                {/* Content */}
-                <div>
-                    {/* Options */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4.5">
-                        {options.map((item, index) => (
-                            <div
-                                key={index}
-                                className={cn(
-                                    "px-5.5 py-8.5 bg-white center flex-col gap-5 md:gap-7.5 rounded-3xl hover:shadow-[-16.81px_50.44px_84.06px_rgba(31,29,85,0.05)] border-b border-b-transparent hover:border-b-app-green transition-all duration-300 ease-in-out",
-                                    "_cards opacity-0 text-center"
-                                )}
-                            >
-                                <div className="size-20 rounded-full border-2 border-[#0E0637]/[18%] center">
-                                    {item.icon}
-                                </div>
-                                <p className="text-base sm:text-[20px] font-medium font-outfit">
-                                    {item.title}
-                                </p>
-                                <>{item.text}</>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Offering */}
-                    <div
-                        ref={offeringCard}
-                        className="w-full py-10 lg:py-14.5 px-8 lg:px-12.5 rounded-[44px] bg-white flex flex-col lg:flex-row gap-20 lg:gap-0 mt-20 md:mt-[148px] opacity-0 translate-y-10 scroll-mt-28 lg:scroll-mt-40"
-                        id="what-we-are-offering"
-                    >
-                        <div className="shrink-0 lg:border-r-2 border-r-black/5 pr-8">
-                            <div className="max-w-[298px] w-full">
-                                <SectionHeader
-                                    title="What We Are Offering"
-                                    text="Features"
-                                    className="items-start text-left mb-4"
-                                />
-                                <p className="text-copy mb-10">
-                                    Everything you need to control your vendors,
-                                    in one smart dashboard.
-                                </p>
-                                <LinkButton
-                                    text="Get early access"
-                                    href="https://forms.gle/tJUF8kug3T4PfaCs5"
-                                    icon={<IconArrowRight />}
-                                    iconSize={18}
-                                />
-                            </div>
-                        </div>
-
-                        {/* Offers */}
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-5 lg:gap-1 gap-y-10 lg:pl-8">
-                            {offerings.map((item, index) => (
-                                <div
-                                    key={index}
-                                    className="lg:p-5 flex flex-col text-left"
-                                >
-                                    <div className="size-[70px] rounded-full bg-[#F1F1F9] center mb-4">
-                                        <div>
-                                            <Image
-                                                src={item.icon}
-                                                alt={item.title}
-                                                width={34}
-                                                height={34}
-                                            />
-                                        </div>
-                                    </div>
-                                    <h4 className="text-base/[22.4px] sm:text-lg leading-[25.25px] font-medium font-outfit mb-2">
-                                        {item.title}
-                                    </h4>
-                                    <p className="text-sm/[18px] sm:text-base/[24px] text-foreground-copy font-inter">
-                                        {item.description}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                <div className="max-sm:hidden absolute left-0 bottom-0 w-full z-[-1]">
-                    <Image
-                        src="/imgs/offering-bg.png"
-                        alt="offering-bg"
-                        width={1920}
-                        height={900}
-                        className="size-full object-cover"
-                    />
-                </div>
+                <p className="text-copy mb-5 md:mb-7 lg:mb-10">
+                  Everything you need to control your vendors, in one smart
+                  dashboard.
+                </p>
+                <LinkButton
+                  text="Get early access"
+                  href="https://forms.gle/tJUF8kug3T4PfaCs5"
+                  icon={<IconArrowRight />}
+                  iconSize={18}
+                />
+              </div>
             </div>
-        </section>
-    );
+
+            {/* Offers */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-5 lg:gap-1 gap-y-10 lg:pl-8">
+              {offerings.map((item, index) => (
+                <div key={index} className="lg:p-5 flex flex-col text-left">
+                  <div className="size-[70px] rounded-full bg-[#F1F1F9] center mb-4">
+                    <div>
+                      <Image
+                        src={item.icon}
+                        alt={item.title}
+                        width={34}
+                        height={34}
+                      />
+                    </div>
+                  </div>
+                  <h4 className="text-base/[22.4px] sm:text-lg leading-[25.25px] font-medium font-outfit mb-2">
+                    {item.title}
+                  </h4>
+                  <p className="text-sm/[18px] sm:text-base/[24px] text-foreground-copy font-inter">
+                    {item.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="max-sm:hidden absolute left-0 bottom-0 w-full z-[-1]">
+          <Image
+            src="/imgs/offering-bg.png"
+            alt="offering-bg"
+            width={1920}
+            height={900}
+            className="size-full object-cover"
+          />
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default WhoItForSection;
