@@ -1,3 +1,4 @@
+import { generateJsonLd } from "@/lib/seo";
 import { client } from "@/sanity/lib/client";
 import { useCaseBySlugQuery } from "@/sanity/lib/queries";
 import UseCaseDetailView from "@/views/use-cases/use-case-detail";
@@ -21,6 +22,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: useCase.seoTitle || useCase.title,
     description: useCase.seoDescription || useCase.heroSubheading,
+    alternates: {
+      canonical: `https://www.vendibly.ai/use-cases/${slug}`,
+    },
   };
 }
 
@@ -34,5 +38,23 @@ export default async function UseCaseDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  return <UseCaseDetailView useCase={useCase} />;
+  const jsonLd = generateJsonLd({
+    title: useCase.seoTitle || useCase.title,
+    description: useCase.seoDescription || useCase.heroSubheading,
+    slug,
+    publishedAt: useCase._createdAt,
+    modifiedAt: useCase._updatedAt,
+    faqs: useCase.faqs,
+    urlPrefix: "use-cases",
+  });
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <UseCaseDetailView useCase={useCase} />
+    </>
+  );
 }

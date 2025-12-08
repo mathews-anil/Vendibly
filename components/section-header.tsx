@@ -22,7 +22,7 @@ const SectionHeader = forwardRef<HTMLDivElement, Props>(
             {text}
           </p>
         </div>
-        <h1 className="title">{title}</h1>
+        <h2 className="title">{title}</h2>
       </div>
     );
   },

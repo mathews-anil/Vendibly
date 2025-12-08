@@ -17,7 +17,9 @@ export const guideBySlugQuery = defineQuery(`*[_type == "guide" && slug.current 
   ctaButton,
   seoTitle,
   seoDescription,
-  ogImage
+  ogImage,
+  _createdAt,
+  _updatedAt
 }`);
 
 export const vendorsQuery = defineQuery(`*[_type == "vendorProfile"]{
@@ -38,7 +40,9 @@ export const vendorBySlugQuery = defineQuery(`*[_type == "vendorProfile" && slug
   howVendiblyHelps,
   faqItems,
   seoTitle,
-  seoDescription
+  seoDescription,
+  _createdAt,
+  _updatedAt
 }`);
 
 export const useCasesQuery = defineQuery(`*[_type == "useCase"]{
@@ -57,5 +61,7 @@ export const useCaseBySlugQuery = defineQuery(`*[_type == "useCase" && slug.curr
   finalCTA,
   faqs,
   seoTitle,
-  seoDescription
+  seoDescription,
+  _createdAt,
+  _updatedAt
 }`);
