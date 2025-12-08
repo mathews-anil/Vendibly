@@ -24,6 +24,9 @@ export const metadata: Metadata = {
   title: "Vendibly: Track Vendor Contracts & Renewals Automatically",
   description:
     "Never miss a contract renewal again. Vendibly helps small businesses track vendors, manage subscriptions, and automate reminders — all in one clean dashboard.",
+  alternates: {
+    canonical: "https://vendibly.ai",
+  },
   openGraph: {
     title: "Vendibly — AI-powered Vendor Contract Tracker",
     description:
