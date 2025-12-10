@@ -30,6 +30,26 @@ export const guideType = defineType({
       rows: 3,
     }),
     defineField({
+      name: 'featured',
+      title: 'Featured on Homepage',
+      type: 'boolean',
+      description: 'Show this guide in the What We Are Offering section on homepage',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'shortDescription',
+      title: 'Short Description (for homepage)',
+      type: 'text',
+      rows: 2,
+      description: 'Brief description shown on homepage offerings section (if featured)',
+    }),
+    defineField({
+      name: 'icon',
+      title: 'Icon Path',
+      type: 'string',
+      description: 'Icon path for homepage display (e.g., /icons/email-sync.png)',
+    }),
+    defineField({
       name: 'coverImage',
       title: 'Cover Image',
       type: 'image',

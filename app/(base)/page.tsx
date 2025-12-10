@@ -1,7 +1,34 @@
-"use client";
 import Home from "@/views/home";
+import { client } from "@/sanity/lib/client";
 
-export default function HomePage() {
+const useCasesQuery = `*[_type == "useCase" && defined(category)] | order(category asc) {
+  title,
+  "slug": slug.current,
+  category,
+  shortDescription,
+  cardIcon {
+    asset->{
+      url
+    },
+    alt
+  }
+}`;
+
+const featuredGuidesQuery = `*[_type == "guide" && featured == true] | order(_createdAt desc) [0...4] {
+  title,
+  "slug": slug.current,
+  shortDescription,
+  icon
+}`;
+
+export const revalidate = 60;
+
+export default async function HomePage() {
+  const [useCases, featuredGuides] = await Promise.all([
+    client.fetch(useCasesQuery),
+    client.fetch(featuredGuidesQuery)
+  ]);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -155,7 +182,7 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Home />
+      <Home useCases={useCases} featuredGuides={featuredGuides} />
     </>
   );
 }

@@ -7,6 +7,7 @@ import {authorType} from './authorType'
 import {guideType} from './guideType'
 import {vendorProfileType} from './vendorProfileType'
 import {useCaseType} from './useCaseType'
+import {pricingType} from './pricingType'
 
 export const schema: {types: SchemaTypeDefinition[]} = {
   types: [
@@ -17,5 +18,6 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     guideType,
     vendorProfileType,
     useCaseType,
+    pricingType,
   ],
 }

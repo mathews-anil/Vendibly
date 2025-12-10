@@ -1,3 +1,5 @@
+"use client";
+
 import ElementSVG from "@/components/element-svg";
 import IconArrowRight from "@/components/icons/icon-arrow-right";
 import IconCheckMark from "@/components/icons/icon-check-mark";

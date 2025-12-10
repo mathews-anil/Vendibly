@@ -4,10 +4,16 @@ export const guidesQuery = defineQuery(`*[_type == "guide"]{
   title,
   "slug": slug.current,
   excerpt,
-  coverImage
+  coverImage {
+    asset->{
+      url
+    },
+    alt
+  }
 }`);
 
-export const guideBySlugQuery = defineQuery(`*[_type == "guide" && slug.current == $slug][0]{
+export const guideBySlugQuery =
+  defineQuery(`*[_type == "guide" && slug.current == $slug][0]{
   title,
   "slug": slug.current,
   excerpt,
@@ -29,7 +35,8 @@ export const vendorsQuery = defineQuery(`*[_type == "vendorProfile"]{
   category
 }`);
 
-export const vendorBySlugQuery = defineQuery(`*[_type == "vendorProfile" && slug.current == $slug][0]{
+export const vendorBySlugQuery =
+  defineQuery(`*[_type == "vendorProfile" && slug.current == $slug][0]{
   title,
   "slug": slug.current,
   vendorName,
@@ -45,21 +52,67 @@ export const vendorBySlugQuery = defineQuery(`*[_type == "vendorProfile" && slug
   _updatedAt
 }`);
 
-export const useCasesQuery = defineQuery(`*[_type == "useCase"]{
+export const useCasesQuery =
+  defineQuery(`*[_type == "useCase" && defined(category)] | order(category asc) {
   title,
   "slug": slug.current,
-  heroHeading,
-  heroSubheading
+  category,
+  shortDescription,
+  cardIcon {
+    asset->{
+      url
+    },
+    alt
+  }
 }`);
 
-export const useCaseBySlugQuery = defineQuery(`*[_type == "useCase" && slug.current == $slug][0]{
+export const useCaseBySlugQuery =
+  defineQuery(`*[_type == "useCase" && slug.current == $slug][0]{
   title,
   "slug": slug.current,
+  theme,
+  
+  // Hero
+  heroBadge,
   heroHeading,
   heroSubheading,
-  bodySections,
+  heroButtonText,
+  heroButtonUrl,
+  heroFooterText,
+
+  // Sections
+  problemSection,
+  stackSection,
+  solutionSection,
+  scenariosSection,
+
+  // Pricing
+  pricingSection{
+    badge,
+    title,
+    subtitle,
+    pricingRef->{
+      title,
+      subtitle,
+      plans[]{
+        name,
+        price,
+        cadence,
+        subtitle,
+        badge,
+        features,
+        ctaText,
+        ctaUrl
+      }
+    }
+  },
+
+  // FAQs
+  faqSection,
+
+  // CTA
   finalCTA,
-  faqs,
+
   seoTitle,
   seoDescription,
   _createdAt,

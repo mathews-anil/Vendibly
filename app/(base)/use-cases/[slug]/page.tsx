@@ -1,15 +1,18 @@
 import { generateJsonLd } from "@/lib/seo";
 import { client } from "@/sanity/lib/client";
 import { useCaseBySlugQuery } from "@/sanity/lib/queries";
-import UseCaseDetailView from "@/views/use-cases/use-case-detail";
+import UseCaseView from "@/views/use-cases/use-case-view";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
+  searchParams?: Promise<{ debug?: string }>;
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const useCase = await client.fetch(useCaseBySlugQuery, { slug });
 
@@ -22,16 +25,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: useCase.seoTitle || useCase.title,
     description: useCase.seoDescription || useCase.heroSubheading,
-    alternates: {
-      canonical: `https://www.vendibly.ai/use-cases/${slug}`,
-    },
   };
 }
 
 export const revalidate = 60;
 
-export default async function UseCaseDetailPage({ params }: PageProps) {
-  const { slug } = await params;
+export default async function UseCaseDetailPage({
+  params,
+  searchParams,
+}: PageProps) {
+  const [{ slug }, resolvedSearchParams] = await Promise.all([
+    params,
+    searchParams,
+  ]);
   const useCase = await client.fetch(useCaseBySlugQuery, { slug });
 
   if (!useCase) {
@@ -42,9 +48,9 @@ export default async function UseCaseDetailPage({ params }: PageProps) {
     title: useCase.seoTitle || useCase.title,
     description: useCase.seoDescription || useCase.heroSubheading,
     slug,
+    imageUrl: useCase.heroImage?.asset?.url,
     publishedAt: useCase._createdAt,
     modifiedAt: useCase._updatedAt,
-    faqs: useCase.faqs,
     urlPrefix: "use-cases",
   });
 
@@ -54,7 +60,7 @@ export default async function UseCaseDetailPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <UseCaseDetailView useCase={useCase} />
+      <UseCaseView useCase={useCase} />
     </>
   );
 }

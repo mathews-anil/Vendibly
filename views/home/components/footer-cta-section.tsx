@@ -1,3 +1,5 @@
+
+"use client"
 import IconArrowRightUp from "@/components/icons/icon-arrow-right-up";
 import LinkButton from "@/components/ui/linkButton";
 import { useGSAP } from "@gsap/react";
