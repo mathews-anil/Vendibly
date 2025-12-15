@@ -1,3 +1,5 @@
+"use client";
+
 import ElementSVG from "@/components/element-svg";
 import IconMark from "@/components/icons/icon-mark";
 import IconX from "@/components/icons/icon-x";
@@ -7,14 +9,13 @@ import gsap, { Power4 } from "gsap";
 import Image from "next/image";
 import { useRef } from "react";
 
-// const Before = ["Vendor chaos", "Forgotten bills", "Confusing PDFs"];
 const Before = [
     "Vendor chaos",
-    "Missed renewals",
+    "Missed subscription renewals",
     "Scattered contracts",
     "Manual tracking",
 ];
-// const After = ["Smart dashboard", "Clean records", "Total control"];
+
 const After = [
     "All-in-one dashboard",
     "Smart renewal alerts",
@@ -47,6 +48,7 @@ const ProcessSection = () => {
                 "-=0.7"
             );
     }, {});
+
     return (
         <section className="pb-24 md:pb-32 pt-12 2xl:pb-[174px] relative">
             <ElementSVG className="w-16 sm:w-24 md:w-32 lg:w-40 2xl:w-fit absolute top-[-5%] sm:top-0 2xl:-top-0 left-[5%] 2xl:left-[200px]" />
@@ -60,7 +62,7 @@ const ProcessSection = () => {
                 <div className="md:hidden block w-[200px] mx-auto my-10">
                     <Image
                         src="/imgs/process-img.png"
-                        alt="process-img"
+                        alt="Comparison of vendor chaos before Vendibly and an organized subscription dashboard after Vendibly."
                         width={404}
                         height={415}
                         className="img"
@@ -72,9 +74,9 @@ const ProcessSection = () => {
                         ref={leftElement}
                         className="w-full flex flex-col items-end text-right space-y-4 sm:space-y-8 lg:space-y-10 -translate-x-5 opacity-0"
                     >
-                        <h3 className="text-nowrap text-xl/[22.4px] sm:text-2xl/[20.8px] lg:text-[28px]/[24.2px] font-outfit font-semibold text-app-orange">
+                        <h2 className="text-nowrap text-xl/[22.4px] sm:text-2xl/[20.8px] lg:text-[28px]/[24.2px] font-outfit font-semibold text-app-orange">
                             Before Vendibly:
-                        </h3>
+                        </h2>
                         <ul className="lg:space-y-5.5 space-y-4">
                             {Before.map((item, index) => (
                                 <li
@@ -98,7 +100,7 @@ const ProcessSection = () => {
                     >
                         <Image
                             src="/imgs/process-img.png"
-                            alt="process-img"
+                            alt="Comparison of vendor chaos before Vendibly and an organized subscription dashboard after Vendibly."
                             width={404}
                             height={415}
                             className="img"
@@ -106,12 +108,12 @@ const ProcessSection = () => {
                     </div>
 
                     <div
-                        className="w-full flex flex-col items-start space-y-4 sm:space-y-8 lg:space-y-10 translate-x-5 opacity-0"
                         ref={rightElement}
+                        className="w-full flex flex-col items-start text-left space-y-4 sm:space-y-8 lg:space-y-10 translate-x-5 opacity-0"
                     >
-                        <h3 className="text-xl/[22.4px] sm:text-2xl/[20.8px] lg:text-[28px]/[24.2px] font-outfit font-semibold text-app-green">
+                        <h2 className="text-nowrap text-xl/[22.4px] sm:text-2xl/[20.8px] lg:text-[28px]/[24.2px] font-outfit font-semibold text-app-green">
                             After Vendibly:
-                        </h3>
+                        </h2>
                         <ul className="lg:space-y-5.5 space-y-4">
                             {After.map((item, index) => (
                                 <li

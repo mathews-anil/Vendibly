@@ -60,9 +60,7 @@ const HeroSection = () => {
             <h1 className="title-lg">Finally, vendor chaos under control.</h1>
             <div className="text-sm/5 md:text-base/[27px] font-inter text-foreground-copy">
               <p className="">
-                Vendibly connects to your inbox, finds every contract and
-                renewal (like Canva, Google Workspace, Zoom), and turns the
-                chaos into one clean dashboard.
+                Vendibly connects to your inbox, finds every subscription, contract, and renewal (like Canva, Google Workspace, Zoom), and turns the chaos into one clean dashboard.
               </p>
               <p className="mt-2">
                 No more spreadsheets. No more surprise renewals. No more
@@ -73,8 +71,8 @@ const HeroSection = () => {
 
           <div>
             <LinkButton
-              href={"https://forms.gle/tJUF8kug3T4PfaCs5"}
-              text={"Get early access"}
+              href={"https://app.vendibly.ai/auth/signup"}
+              text={"Create free account"}
               icon={<IconArrowRightUp className="w-6 h-6" />}
               className="rounded-[12px] h-[56px]"
               iconSize={24}
@@ -90,7 +88,7 @@ const HeroSection = () => {
         >
           <Image
             src={"/imgs/Dashboard.png"}
-            alt={"hero"}
+            alt={"Vendibly dashboard showing subscriptions, invoices, and renewal dates organized automatically."}
             width={865}
             height={613}
             className="w-full h-full object-cover"

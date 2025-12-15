@@ -1,3 +1,5 @@
+"use client";
+
 import IconQuote from "@/components/icons/icon-quote";
 import { useGSAP } from "@gsap/react";
 import gsap, { Power4 } from "gsap";

@@ -39,7 +39,7 @@ const routes = [
   },
   {
     name: "Sign In",
-    href: "/contact",
+    href: "https://app.vendibly.ai/auth/signin",
   },
 ];
 
@@ -76,22 +76,13 @@ const Header = () => {
           <ul className="flex gap-[17px] items-center">
             {routes.map((route, index) => (
               <li key={index} data-tooltip={route.name}>
-                {index === routes.length - 1 ? (
-                  <span
-                    className="font-inter text-base font-medium leading-[25.6px] text-gray-400 cursor-not-allowed"
-                    aria-disabled="true"
-                  >
-                    {route.name}
-                  </span>
-                ) : (
-                  <Link
-                    href={route.href}
-                    className="font-inter text-base font-medium leading-[25.6px] hover:text-app-green transition-colors duration-300 ease-in-out"
-                    aria-label={route.name}
-                  >
-                    {route.name}
-                  </Link>
-                )}
+                <Link
+                  href={route.href}
+                  className="font-inter text-base font-medium leading-[25.6px] hover:text-app-green transition-colors duration-300 ease-in-out"
+                  aria-label={route.name}
+                >
+                  {route.name}
+                </Link>
               </li>
             ))}
           </ul>
