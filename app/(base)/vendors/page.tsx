@@ -1,16 +1,18 @@
-import { client } from "@/sanity/lib/client";
-import { vendorsQuery } from "@/sanity/lib/queries";
-import VendorsView from "@/views/vendors";
+import { sanityFetch } from "@/sanity/lib/live";
+import { vendorCategoriesQuery } from "@/sanity/lib/queries";
+import VendorHubView from "@/views/vendors/vendor-hub-view";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Supported Vendors | Vendibly",
-  description: "Browse our supported vendors and learn how to manage them with Vendibly.",
+  description:
+    "See all the SaaS vendors, tools, and subscriptions that Vendibly automatically detects, tracks, and organizes for you.",
 };
 
-export const revalidate = 60;
-
 export default async function VendorsPage() {
-  const vendors = await client.fetch(vendorsQuery);
-  return <VendorsView vendors={vendors} />;
+  const { data: categories } = await sanityFetch({
+    query: vendorCategoriesQuery,
+  });
+
+  return <VendorHubView categories={categories || []} />;
 }

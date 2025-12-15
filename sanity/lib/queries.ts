@@ -29,22 +29,29 @@ export const guideBySlugQuery =
   _updatedAt
 }`);
 
-export const vendorsQuery = defineQuery(`*[_type == "vendorProfile"]{
-  title,
-  "slug": slug.current,
-  vendorName,
-  category
+// Fetch Categories with their vendors
+export const vendorCategoriesQuery =
+  defineQuery(`*[_type == "vendorCategory"] | order(title asc) {
+    title,
+    "id": slug.current,
+    "color": colorTheme,
+    description,
+    "vendors": *[_type == "vendorProfile" && references(^._id)] | order(title asc) {
+      title,
+      "slug": slug.current,
+      shortDescription
+    }
 }`);
 
+// Fetch Single Vendor by Slug
 export const vendorBySlugQuery =
   defineQuery(`*[_type == "vendorProfile" && slug.current == $slug][0]{
   title,
   "slug": slug.current,
-  vendorName,
-  category,
-  whatItIsFor,
-  billing,
-  invoices,
+  shortDescription,
+  "category": category->title,
+  "categoryId": category->slug.current,
+  features,
   howVendiblyHelps,
   faqItems,
   seoTitle,
