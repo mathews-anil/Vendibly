@@ -11,6 +11,7 @@ const AccordionContext = React.createContext<{
 
 const Accordion = ({
   className,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   type,
   collapsible,
   children,
@@ -52,7 +53,7 @@ const AccordionItem = React.forwardRef<
     >
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          // @ts-ignore
+          // @ts-expect-error: Cloning child with extra props
           return React.cloneElement(child, { isOpen, value });
         }
         return child;
