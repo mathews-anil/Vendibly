@@ -34,7 +34,7 @@ export default async function UseCaseDetailPage({
   params,
   searchParams,
 }: PageProps) {
-  const [{ slug }, resolvedSearchParams] = await Promise.all([
+  const [{ slug }] = await Promise.all([
     params,
     searchParams,
   ]);

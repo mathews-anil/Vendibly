@@ -16,14 +16,15 @@ export const guideBySlugQuery =
   defineQuery(`*[_type == "guide" && slug.current == $slug][0]{
   title,
   "slug": slug.current,
-  excerpt,
+  lead,
   coverImage,
-  body,
-  faqs,
-  ctaButton,
+  settings,
+  sections[]{
+    title,
+    content
+  },
   seoTitle,
   seoDescription,
-  ogImage,
   _createdAt,
   _updatedAt
 }`);
