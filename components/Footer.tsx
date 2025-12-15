@@ -13,6 +13,10 @@ const links = [
     title: "Terms & Conditions",
     href: "/terms",
   },
+  {
+    title: "Security",
+    href: "/security",
+  },
 ];
 
 const Footer = () => {

@@ -10,7 +10,26 @@ import WhoItForSection from "@/views/home/components/who-its-for-section";
 import Image from "next/image";
 import FooterCtaSection from "./components/footer-cta-section";
 
-const Home = () => {
+interface UseCase {
+  title: string;
+  slug: string;
+  category: string;
+  shortDescription?: string;
+}
+
+interface FeaturedGuide {
+  title: string;
+  slug: string;
+  shortDescription?: string;
+  icon?: string;
+}
+
+interface HomeProps {
+  useCases: UseCase[];
+  featuredGuides: FeaturedGuide[];
+}
+
+const Home = ({ useCases, featuredGuides }: HomeProps) => {
   return (
     <>
       <HeroSection />
@@ -29,7 +48,7 @@ const Home = () => {
         </div>
       </div>
       <div className="relative">
-        <WhoItForSection />
+        <WhoItForSection useCases={useCases} featuredGuides={featuredGuides} />
         <TestimonialSection />
         <PricingSection />
         <CtaSection />
