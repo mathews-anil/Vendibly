@@ -34,6 +34,7 @@ const HeroSection = () => {
           className={"max-xl:hidden xl:h-[1400px] w-full object-cover"}
           quality={100}
           priority
+          fetchPriority="high"
         />
       </div>
 
@@ -60,7 +61,9 @@ const HeroSection = () => {
             <h1 className="title-lg">Finally, vendor chaos under control.</h1>
             <div className="text-sm/5 md:text-base/[27px] font-inter text-foreground-copy">
               <p className="">
-                Vendibly connects to your inbox, finds every subscription, contract, and renewal (like Canva, Google Workspace, Zoom), and turns the chaos into one clean dashboard.
+                Vendibly connects to your inbox, finds every subscription,
+                contract, and renewal (like Canva, Google Workspace, Zoom), and
+                turns the chaos into one clean dashboard.
               </p>
               <p className="mt-2">
                 No more spreadsheets. No more surprise renewals. No more
@@ -88,10 +91,14 @@ const HeroSection = () => {
         >
           <Image
             src={"/imgs/Dashboard.png"}
-            alt={"Vendibly dashboard showing subscriptions, invoices, and renewal dates organized automatically."}
+            alt={
+              "Vendibly dashboard showing subscriptions, invoices, and renewal dates organized automatically."
+            }
             width={865}
             height={613}
             className="w-full h-full object-cover"
+            priority
+            fetchPriority="high"
           />
         </div>
       </div>
