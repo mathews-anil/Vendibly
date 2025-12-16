@@ -39,7 +39,7 @@ const routes = [
   },
   {
     name: "Sign In",
-    href: "https://app.vendibly.ai/auth/signin",
+    href: "https://app.vendibly.ai/auth/login",
   },
 ];
 
@@ -89,10 +89,9 @@ const Header = () => {
         </div>
         <div className="max-lg:hidden">
           <LinkButton
-            href={"/contact"}
-            text={"Signup"}
+            href={"https://app.vendibly.ai/auth/signup"}
+            text={"Create free account"}
             className="rounded-[14px]"
-            isDisabled
           />
         </div>
 
@@ -112,37 +111,25 @@ const Header = () => {
               <div className="flex flex-col justify-between size-full px-3">
                 <div>
                   <nav className="mt-10 flex flex-col">
-                    {routes?.map((r, i) =>
-                      i === routes.length - 1 ? (
-                        <div
-                          key={r.name}
-                          className="p-3 text-lg font-semibold font-inter text-gray-400 cursor-not-allowed flex justify-between"
-                          aria-disabled="true"
-                        >
+                    {routes?.map((r) => (
+                      <Link
+                        key={r.name}
+                        href={r.href}
+                        className="p-3 text-lg font-semibold font-inter"
+                      >
+                        <SheetClose className="text-start w-full flex justify-between">
                           <span>{r.name}</span>
-                          <ArrowUpRight color="#ccc" />
-                        </div>
-                      ) : (
-                        <Link
-                          key={r.name}
-                          href={r.href}
-                          className="p-3 text-lg font-semibold font-inter"
-                        >
-                          <SheetClose className="text-start w-full flex justify-between">
-                            <span>{r.name}</span>
-                            <ArrowUpRight color="#FF6A3D" />
-                          </SheetClose>
-                        </Link>
-                      ),
-                    )}
+                          <ArrowUpRight color="#FF6A3D" />
+                        </SheetClose>
+                      </Link>
+                    ))}
                   </nav>
                 </div>
                 <div className="flex flex-col center gap-y-3 mt-10">
                   <LinkButton
-                    href={"/contact"}
-                    text={"Start Free"}
+                    href={"https://app.vendibly.ai/auth/signup"}
+                    text={"Create free account"}
                     className="rounded-[14px] w-full"
-                    isDisabled
                   />
                 </div>
               </div>

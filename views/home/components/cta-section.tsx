@@ -26,7 +26,7 @@ const CtaSection = () => {
         .to(left.current, { autoAlpha: 1, x: 0 })
         .to(right.current, { autoAlpha: 1, y: 0 }, "-=0.25");
     },
-    { scope: section },
+    { scope: section }
   );
   return (
     <section ref={section} id="cta" className="relative">
@@ -47,8 +47,8 @@ const CtaSection = () => {
               so you can explore the full power of Vendibly.
             </p>
             <LinkButton
-              text={"Get early access"}
-              href={"https://forms.gle/tJUF8kug3T4PfaCs5"}
+              text={"Create free account"}
+              href={"https://app.vendibly.ai/auth/signup"}
               className=" bg-app-slate mt-8 hover:shadow-[0px_10px_20px_rgba(55,65,81,0.25)]"
               icon={<IconArrowRightUp className="w-6 h-6" />}
               iconSize={24}

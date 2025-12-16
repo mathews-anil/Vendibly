@@ -15,7 +15,7 @@ const process = [
     step: "Step 1",
     title: "Add your vendors",
     description:
-      "Connect your email or upload contracts. Vendibly uses AI and organizes it all.",
+      "Connect your email and Vendibly auto-detects your subscriptions and invoices.",
     color: "#ff6a3d",
     icon: <IconVendor className="w-6 md:w-8 lg:w-10" />,
     className: "_left -translate-x-5 opacity-0",
@@ -23,8 +23,7 @@ const process = [
   {
     step: "Step 2",
     title: "Get smart alerts",
-    description:
-      "Renewals, deadlines, payment history — automatically tracked.",
+    description: "Renewal dates and upcoming charges tracked automatically.",
     color: "#00c999",
     icon: <IconAlert className="w-6 md:w-8 lg:w-10" />,
     className: "_center -translate-x-5 opacity-0",
@@ -33,7 +32,7 @@ const process = [
     step: "Step 3",
     title: "Take action",
     description:
-      "Cancel, negotiate, or renew directly. No phone calls. No searching.",
+      "Cancel or adjust your subscriptions without searching. No stress.",
     color: "#374151",
     icon: <IconAction className="w-6 md:w-8 lg:w-10" />,
     className: "_right -translate-x-5 opacity-0",
@@ -61,7 +60,7 @@ const HowItWorksSection = () => {
           stagger: 0.1,
         });
     },
-    { scope: section },
+    { scope: section }
   );
   return (
     <section
@@ -85,7 +84,7 @@ const HowItWorksSection = () => {
               key={index}
               className={cn(
                 "flex flex-col justify-start items-center gap-10 xl:gap-12.5 text-center md:aspect-square",
-                item.className,
+                item.className
               )}
             >
               {/* Box */}
@@ -97,7 +96,7 @@ const HowItWorksSection = () => {
                   index === 1 &&
                     "shadow-[0px_100px_80px_rgba(0,201,153,0.07),0px_64.81px_46.85px_rgba(0,201,153,0.0531),0px_38.52px_25.48px_rgba(0,201,153,0.0425),0px_20px_13px_rgba(0,201,153,0.035),0px_8.15px_6.52px_rgba(0,201,153,0.0275),0px_1.85px_3.15px_rgba(0,201,153,0.0169)]",
                   index === 2 &&
-                    "shadow-[0px_100px_80px_rgba(36,46,73,0.07),0px_64.81px_46.85px_rgba(36,46,73,0.0531),0px_38.52px_25.48px_rgba(36,46,73,0.0425),0px_20px_13px_rgba(36,46,73,0.035),0px_8.15px_6.52px_rgba(36,46,73,0.0275),0px_1.85px_3.15px_rgba(36,46,73,0.0169)]",
+                    "shadow-[0px_100px_80px_rgba(36,46,73,0.07),0px_64.81px_46.85px_rgba(36,46,73,0.0531),0px_38.52px_25.48px_rgba(36,46,73,0.0425),0px_20px_13px_rgba(36,46,73,0.035),0px_8.15px_6.52px_rgba(36,46,73,0.0275),0px_1.85px_3.15px_rgba(36,46,73,0.0169)]"
                 )}
                 style={{ backgroundColor: item.color }}
               >
