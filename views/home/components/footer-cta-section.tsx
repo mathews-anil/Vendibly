@@ -3,6 +3,7 @@ import IconArrowRightUp from "@/components/icons/icon-arrow-right-up";
 import LinkButton from "@/components/ui/linkButton";
 import { useGSAP } from "@gsap/react";
 import gsap, { Power4 } from "gsap";
+import Link from "next/link";
 import { useRef } from "react";
 
 const FooterCtaSection = () => {
@@ -46,7 +47,13 @@ const FooterCtaSection = () => {
               Tidy up your
             </h1>
             <h1 className="relative text-[50px]/[61px] sm:text-6xl/[76px] lg:text-[70px]/[86px] text-white font-semibold font-outfit">
-              vendor chaos.
+              <Link
+                href="/vendors"
+                className="hover:opacity-80 transition-opacity"
+              >
+                vendor
+              </Link>{" "}
+              chaos.
               <svg
                 ref={svgShape}
                 xmlns="http://www.w3.org/2000/svg"

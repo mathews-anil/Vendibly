@@ -5,6 +5,7 @@ import LinkButton from "@/components/ui/linkButton";
 import { useGSAP } from "@gsap/react";
 import gsap, { Power4 } from "gsap";
 import Image from "next/image";
+import Link from "next/link";
 import { useRef } from "react";
 
 const HeroSection = () => {
@@ -58,7 +59,16 @@ const HeroSection = () => {
           </div>
 
           <div className="space-y-3 lg:space-y-4.5 xl:w-full max-w-[460px] md:max-w-[600px] mx-auto">
-            <h1 className="title-lg">Finally, vendor chaos under control.</h1>
+            <h1 className="title-lg">
+              Finally,{" "}
+              <Link
+                href="/vendors"
+                className="hover:text-app-green transition-colors"
+              >
+                vendor
+              </Link>{" "}
+              chaos under control.
+            </h1>
             <div className="text-sm/5 md:text-base/[27px] font-inter text-foreground-copy">
               <p className="">
                 Vendibly connects to your inbox, finds every subscription,
