@@ -55,7 +55,7 @@ const fallbackOptions = [
     href: "/use-cases/creators",
     text: (
       <p className="text-sm/[18px] sm:text-base/[24px] text-foreground-copy font-inter">
-        Manage sponsors and tools like{" "}
+        Manage subscriptions and tools like{" "}
         <span className="font-semibold">Canva</span> or{" "}
         <span className="font-semibold">ConvertKit,</span> without the mess.
       </p>
@@ -81,7 +81,7 @@ const fallbackOptions = [
     text: (
       <p className="text-sm/[18px] sm:text-base/[24px] text-foreground-copy font-inter">
         Stay on top of services like{" "}
-        <span className="font-semibold"> Figma, Stripe,</span> and{" "}
+        <span className="font-semibold">Figma, GitHub,</span> and{" "}
         <span className="font-semibold">AWS,</span> automatically.
       </p>
     ),
@@ -104,7 +104,7 @@ const fallbackOptions = [
 const defaultUseCaseDescriptions: Record<string, React.ReactNode> = {
   creators: (
     <p className="text-sm/[18px] sm:text-base/[24px] text-foreground-copy font-inter">
-      Manage sponsors and tools like{" "}
+      Manage subscriptions and tools like{" "}
       <span className="font-semibold">Canva</span> or{" "}
       <span className="font-semibold">ConvertKit,</span> without the mess.
     </p>
@@ -119,7 +119,7 @@ const defaultUseCaseDescriptions: Record<string, React.ReactNode> = {
   startups: (
     <p className="text-sm/[18px] sm:text-base/[24px] text-foreground-copy font-inter">
       Stay on top of services like{" "}
-      <span className="font-semibold"> Figma, Stripe,</span> and{" "}
+      <span className="font-semibold">Figma, GitHub,</span> and{" "}
       <span className="font-semibold">AWS,</span> automatically.
     </p>
   ),
@@ -137,35 +137,34 @@ const fallbackOfferings = [
   {
     title: "Email sync",
     description:
-      "Vendibly auto-scans your inbox to find every vendor, contract, and renewal.",
+      "Vendibly auto-scans your inbox to find every subscription, vendor, contract, and invoice.",
     icon: "/icons/email-sync.png",
     href: "/guides/find-subscriptions-in-gmail-and-outlook",
   },
   {
     title: "Smart renewal reminders",
     description:
-      "Get alerts before contracts renew, so you can cancel or renegotiate in time.",
+      "Get alerts before your subscriptions renew, so you can cancel or adjust in time.",
     icon: "/icons/smart-renewal.png",
     href: "/guides/set-subscription-renewal-reminders",
   },
   {
     title: "Auto-organized vault",
     description:
-      "All your contracts and invoices, finally in one place, searchable and stress-free.",
+      "All your contracts and subscription invoices in one searchable, stress-free place.",
     icon: "/icons/auto-organized.png",
     href: "/guides/organize-subscription-invoices-from-email",
   },
   {
     title: "Renewal calendar",
     description:
-      "See all upcoming charges and contract deadlines in one visual calendar.",
+      "See every upcoming renewal date and charge in one visual calendar.",
     icon: "/icons/renewal-calendar.png",
     href: "/guides/create-a-subscription-renewal-calendar",
   },
   {
     title: "Downloadable reports",
-    description:
-      "Export clean summaries of vendor activity, payments, and renewal dates.",
+    description: "Export clean reports of vendors, spend, and renewal dates.",
     icon: "/icons/downloadable-report.png",
   },
   {
@@ -182,43 +181,52 @@ const fallbackOfferings = [
   },
 ];
 
-const WhoItForSection = ({ useCases, featuredGuides }: WhoItForSectionProps) => {
+const WhoItForSection = ({
+  useCases,
+  featuredGuides,
+}: WhoItForSectionProps) => {
   // Transform Sanity data into component format
-  const options = useCases.length > 0 
-    ? useCases.map((useCase) => ({
-        title: useCase.title,
-        icon: useCase.cardIcon?.asset?.url ? (
-          <Image 
-            src={useCase.cardIcon.asset.url} 
-            alt={useCase.cardIcon.alt || useCase.title} 
-            width={40} 
-            height={40} 
-            className="w-10 h-10 object-contain"
-          />
-        ) : (
-          categoryIcons[useCase.category as keyof typeof categoryIcons] || <IconLeadership />
-        ),
-        href: `/use-cases/${useCase.slug}`,
-        text: useCase.shortDescription ? (
-          <p className="text-sm/[18px] sm:text-base/[24px] text-foreground-copy font-inter">
-            {useCase.shortDescription}
-          </p>
-        ) : defaultUseCaseDescriptions[useCase.category] || null,
-      }))
-    : fallbackOptions;
+  const options =
+    useCases.length > 0
+      ? useCases.map((useCase) => ({
+          title: useCase.title,
+          icon: useCase.cardIcon?.asset?.url ? (
+            <Image
+              src={useCase.cardIcon.asset.url}
+              alt={useCase.cardIcon.alt || useCase.title}
+              width={40}
+              height={40}
+              className="w-10 h-10 object-contain"
+            />
+          ) : (
+            categoryIcons[useCase.category as keyof typeof categoryIcons] || (
+              <IconLeadership />
+            )
+          ),
+          href: `/use-cases/${useCase.slug}`,
+          text: useCase.shortDescription ? (
+            <p className="text-sm/[18px] sm:text-base/[24px] text-foreground-copy font-inter">
+              {useCase.shortDescription}
+            </p>
+          ) : (
+            defaultUseCaseDescriptions[useCase.category] || null
+          ),
+        }))
+      : fallbackOptions;
 
-  const offerings = featuredGuides.length > 0
-    ? [
-        ...featuredGuides.map((guide) => ({
-          title: guide.title,
-          description: guide.shortDescription || "",
-          icon: guide.icon || "/icons/email-sync.png",
-          href: `/guides/${guide.slug}`,
-        })),
-        // Add remaining static offerings if less than 7 featured guides
-        ...fallbackOfferings.slice(featuredGuides.length),
-      ]
-    : fallbackOfferings;
+  const offerings =
+    featuredGuides.length > 0
+      ? [
+          ...featuredGuides.map((guide) => ({
+            title: guide.title,
+            description: guide.shortDescription || "",
+            icon: guide.icon || "/icons/email-sync.png",
+            href: `/guides/${guide.slug}`,
+          })),
+          // Add remaining static offerings if less than 7 featured guides
+          ...fallbackOfferings.slice(featuredGuides.length),
+        ]
+      : fallbackOfferings;
 
   const section = useRef(null);
   const header = useRef(null);
@@ -250,7 +258,7 @@ const WhoItForSection = ({ useCases, featuredGuides }: WhoItForSectionProps) => 
         },
       });
     },
-    { scope: section },
+    { scope: section }
   );
   return (
     <section
@@ -276,7 +284,7 @@ const WhoItForSection = ({ useCases, featuredGuides }: WhoItForSectionProps) => 
                 href={item.href}
                 className={cn(
                   "px-5.5 py-8.5 bg-white center flex-col gap-5 md:gap-7.5 rounded-3xl hover:shadow-[-16.81px_50.44px_84.06px_rgba(31,29,85,0.05)] border-b border-b-transparent hover:border-b-app-green transition-all duration-300 ease-in-out cursor-pointer",
-                  "_cards opacity-0 text-center",
+                  "_cards opacity-0 text-center"
                 )}
               >
                 <div className="size-20 rounded-full border-2 border-[#0E0637]/[18%] center">
@@ -304,12 +312,12 @@ const WhoItForSection = ({ useCases, featuredGuides }: WhoItForSectionProps) => 
                   className="items-start text-left mb-2.5 lg:mb-4"
                 />
                 <p className="text-copy mb-5 md:mb-7 lg:mb-10">
-                  Everything you need to control your vendors, in one smart
-                  dashboard.
+                  Everything you need to control your subscriptions and vendors,
+                  in one smart dashboard.
                 </p>
                 <LinkButton
-                  text="Get early access"
-                  href="https://forms.gle/tJUF8kug3T4PfaCs5"
+                  text="Create free account"
+                  href="https://app.vendibly.ai/auth/signup"
                   icon={<IconArrowRight />}
                   iconSize={18}
                 />

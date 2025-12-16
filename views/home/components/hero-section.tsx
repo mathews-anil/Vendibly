@@ -5,6 +5,7 @@ import LinkButton from "@/components/ui/linkButton";
 import { useGSAP } from "@gsap/react";
 import gsap, { Power4 } from "gsap";
 import Image from "next/image";
+import Link from "next/link";
 import { useRef } from "react";
 
 const HeroSection = () => {
@@ -34,6 +35,7 @@ const HeroSection = () => {
           className={"max-xl:hidden xl:h-[1400px] w-full object-cover"}
           quality={100}
           priority
+          fetchPriority="high"
         />
       </div>
 
@@ -57,10 +59,21 @@ const HeroSection = () => {
           </div>
 
           <div className="space-y-3 lg:space-y-4.5 xl:w-full max-w-[460px] md:max-w-[600px] mx-auto">
-            <h1 className="title-lg">Finally, vendor chaos under control.</h1>
+            <h1 className="title-lg">
+              Finally,{" "}
+              <Link
+                href="/vendors"
+                className="hover:text-app-green transition-colors"
+              >
+                vendor
+              </Link>{" "}
+              chaos under control.
+            </h1>
             <div className="text-sm/5 md:text-base/[27px] font-inter text-foreground-copy">
               <p className="">
-                Vendibly connects to your inbox, finds every subscription, contract, and renewal (like Canva, Google Workspace, Zoom), and turns the chaos into one clean dashboard.
+                Vendibly connects to your inbox, finds every subscription,
+                contract, and renewal (like Canva, Google Workspace, Zoom), and
+                turns the chaos into one clean dashboard.
               </p>
               <p className="mt-2">
                 No more spreadsheets. No more surprise renewals. No more
@@ -88,10 +101,14 @@ const HeroSection = () => {
         >
           <Image
             src={"/imgs/Dashboard.png"}
-            alt={"Vendibly dashboard showing subscriptions, invoices, and renewal dates organized automatically."}
+            alt={
+              "Vendibly dashboard showing subscriptions, invoices, and renewal dates organized automatically."
+            }
             width={865}
             height={613}
             className="w-full h-full object-cover"
+            priority
+            fetchPriority="high"
           />
         </div>
       </div>

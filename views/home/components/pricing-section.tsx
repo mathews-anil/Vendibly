@@ -12,58 +12,63 @@ import { useGSAP } from "@gsap/react";
 import gsap, { Power4 } from "gsap";
 import { useRef } from "react";
 
-const features = [
-  { label: "Manage up to 5 vendors", disabled: false },
-  { label: "Smart renewal reminders" },
-  { label: "Auto-organized vendor vault" },
-  { label: "Basic calendar view (30 days)" },
-  { label: "Email inbox sync (1 account)" },
-
-  { label: "Unlimited vendors" },
-  { label: "AI-powered contract summaries" },
-  { label: "Full calendar view" },
-  { label: "Exportable reports (CSV, PDF)" },
-  { label: "Priority support" },
-
-  { label: "Everything in Pro" },
-  { label: "Shared team dashboard" },
-  { label: "Slack alerts" },
-  { label: "Team access with roles" },
-  { label: "Vendor tags and folders" },
-  { label: "Advanced export options" },
-];
-
 const pricing = [
   {
     title: "Free",
-    price: 0,
-    subtitle: "For getting started with vendor control",
-    features: [features[0], features[1], features[2], features[3], features[4]],
+    price: "0.00",
+    priceSuffix: "/ Month",
+    subtitle: "For getting started with vendor control.",
+    features: [
+      "Manage up to 5 vendors",
+      "Smart renewal reminders",
+      "Auto-organized vendor vault",
+      "30-day calendar view",
+      "Email inbox sync trial",
+    ],
+    note: "Upgrade anytime to keep your inbox in continuous sync.",
     icon: <IconGems className="w-8 lg:w-10" />,
-    url: "https://forms.gle/tJUF8kug3T4PfaCs5",
+    ctaText: "Create free account",
+    ctaUrl: "https://app.vendibly.ai/auth/signup",
+    highlight: false,
   },
   {
     title: "Pro",
-    price: 9,
-    subtitle: "For power users and solo founders",
-    features: [features[5], features[6], features[7], features[8], features[9]],
+    price: "19",
+    priceSuffix: "/ Month billed annually",
+    subtitle: "For power users and solo founders.",
+    features: [
+      "Unlimited vendors",
+      "Automatic inbox sync with renewal alerts",
+      "AI-powered contract summaries",
+      "Full renewal calendar view",
+      "Exportable reports (CSV, PDF)",
+      "1 inbox sync included",
+    ],
+    note: "Add more inboxes: +$9/month each",
     icon: <IconDiamond className="w-8 lg:w-10" />,
-    url: "https://forms.gle/tJUF8kug3T4PfaCs5",
+    ctaText: "Start 14-day free trial",
+    ctaUrl: "https://app.vendibly.ai/auth/signup",
+    highlight: true,
   },
   {
     title: "Plus",
-    price: 19,
-    subtitle: "For teams and growing startups",
+    price: null,
+    priceSuffix: null,
+    subtitle: "For teams and growing startups.",
     features: [
-      features[10],
-      features[11],
-      features[12],
-      features[13],
-      features[14],
-      features[15],
+      "Everything in Pro",
+      "Shared team dashboard",
+      "Slack alerts built in",
+      "Team access with roles",
+      "Vendor tags and folders",
+      "Advanced export options",
+      "3 inbox syncs included",
     ],
+    note: "Add more inboxes: +$9/month each",
     icon: <IconGems className="w-8 lg:w-10" />,
-    url: "https://forms.gle/tJUF8kug3T4PfaCs5",
+    ctaText: "Join Waitlist",
+    ctaUrl: "https://forms.gle/tJUF8kug3T4PfaCs5",
+    highlight: false,
   },
 ];
 
@@ -86,7 +91,7 @@ const PricingSection = () => {
         .to("._cards", { autoAlpha: 1, x: 0, stagger: 0.1 }, "-=0.5")
         .to("._cardMiddle", { y: -28 });
     },
-    { scope: section },
+    { scope: section }
   );
   return (
     <section
@@ -110,13 +115,13 @@ const PricingSection = () => {
               key={index}
               className={cn(
                 "p-5 lg:p-8 rounded-3xl flex flex-col justify-between bg-white shadow-[8px_24px_96px_rgba(126,138,253,0.08)] _cards opacity-0 -translate-x-7",
-                index === 1 && "xl:-translate-y-7",
+                index === 1 && "xl:-translate-y-7"
               )}
             >
               <div className="space-y-6 lg:space-y-12">
                 <div className="flex justify-between items-center">
                   {item.icon}
-                  {index === 1 && (
+                  {item.highlight && (
                     <div className="max-w-[132.1px] w-full py-2.5 rounded-[45px] bg-app-orange/10 text-xs font-bold uppercase text-app-orange text-center font-inter">
                       POPULAR PLAN
                     </div>
@@ -124,9 +129,9 @@ const PricingSection = () => {
                 </div>
                 <div className="space-y-6 lg:space-y-8">
                   <div className="space-y-2 lg:space-y-4">
-                    <h1 className="text-3xl/[34px] lg:text-[34px]/[36px] font-bold font-outfit text-app-green">
+                    <h3 className="text-3xl/[34px] lg:text-[34px]/[36px] font-bold font-outfit text-app-green">
                       {item.title}
-                    </h1>
+                    </h3>
                     <p className="text-base font-inter text-foreground-copy">
                       {item.subtitle}
                     </p>
@@ -136,34 +141,43 @@ const PricingSection = () => {
                       Key Features:
                     </p>
                     <ul className="space-y-2 lg:space-y-3">
-                      {item.features
-                        .filter((feature) => !feature.disabled)
-                        .map((feature, index) => (
-                          <li key={index} className="flex items-center gap-2">
-                            <IconCheckMark className="shrink-0" />
-                            <p className="text-sm lg:text-base font-inter font-medium">
-                              {feature.label}
-                            </p>
-                          </li>
-                        ))}
+                      {item.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-center gap-2">
+                          <IconCheckMark className="shrink-0" />
+                          <p className="text-sm lg:text-base font-inter font-medium">
+                            {feature}
+                          </p>
+                        </li>
+                      ))}
                     </ul>
+                    {item.note && (
+                      <p className="text-sm text-foreground-copy font-inter italic">
+                        {item.note}
+                      </p>
+                    )}
                   </div>
-                  <h1 className="text-3xl/[34px] lg:text-[32px]/[36px] font-bold font-outfit">
-                    ${item.price}.00{" "}
-                    <span className="text-sm lg:text-base font-normal text-foreground-copy">
-                      / Month
-                    </span>
-                  </h1>
+                  {item.price !== null ? (
+                    <h3 className="text-3xl/[34px] lg:text-[32px]/[36px] font-bold font-outfit">
+                      ${item.price}{" "}
+                      <span className="text-sm lg:text-base font-normal text-foreground-copy">
+                        {item.priceSuffix}
+                      </span>
+                    </h3>
+                  ) : (
+                    <h3 className="text-2xl/[34px] lg:text-[28px]/[36px] font-bold font-outfit text-app-green">
+                      Join the Waitlist
+                    </h3>
+                  )}
                 </div>
               </div>
               <LinkButton
-                href={item.url}
-                text="Get early access to this plan"
+                href={item.ctaUrl}
+                text={item.ctaText}
                 className={cn(
                   "w-full h-12 mt-6 lg:mt-12 lg:h-[54px] bg-transparent rounded-[10px] border border-app-orange hover:shadow-[0px_10px_20px_rgba(255,106,61,0.25)]",
-                  index === 1
+                  item.highlight
                     ? "text-white bg-app-orange"
-                    : "text-app-orange hover:bg-app-orange hover:text-white",
+                    : "text-app-orange hover:bg-app-orange hover:text-white"
                 )}
                 icon={<IconArrowRight className="w-4.5 h-4.5" />}
                 iconSize={18}
