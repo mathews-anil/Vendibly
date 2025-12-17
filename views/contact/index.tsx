@@ -214,7 +214,7 @@ const Contact = () => {
                     text={loading ? "Sending..." : "Send Your Message"}
                     className="bg-app-orange rounded-xl mx-auto"
                     icon={<IconArrowRightUp className="w-6 h-6" />}
-                    iconSize={24}
+                    iconSize={18}
                     moveUp
                     type="submit"
                     disabled={loading}
@@ -355,7 +355,7 @@ export default Contact;
 //                     text="Send Your Message"
 //                     className="bg-app-orange rounded-xl mx-auto"
 //                     icon={<IconArrowRightUp className="w-6 h-6" />}
-//                     iconSize={24}
+//                     iconSize={18}
 //                     moveUp
 //                     onClick={(e) => e.preventDefault()}
 //                   />

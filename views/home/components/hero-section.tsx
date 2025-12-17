@@ -72,8 +72,28 @@ const HeroSection = () => {
             <div className="text-sm/5 md:text-base/[27px] font-inter text-foreground-copy">
               <p className="">
                 Vendibly connects to your inbox, finds every subscription,
-                contract, and renewal (like Canva, Google Workspace, Zoom), and
-                turns the chaos into one clean dashboard.
+                contract, and renewal (like{" "}
+                <Link
+                  href="/vendors/canva"
+                  className="hover:text-app-green transition-colors"
+                >
+                  Canva
+                </Link>
+                ,{" "}
+                <Link
+                  href="/vendors/google-workspace"
+                  className="hover:text-app-green transition-colors"
+                >
+                  Google Workspace
+                </Link>
+                ,{" "}
+                <Link
+                  href="/vendors/zoom"
+                  className="hover:text-app-green transition-colors"
+                >
+                  Zoom
+                </Link>
+                ), and turns the chaos into one clean dashboard.
               </p>
               <p className="mt-2">
                 No more spreadsheets. No more surprise renewals. No more
@@ -88,7 +108,7 @@ const HeroSection = () => {
               text={"Create free account"}
               icon={<IconArrowRightUp className="w-6 h-6" />}
               className="rounded-[12px] h-[56px]"
-              iconSize={24}
+              iconSize={18}
               moveUp
             />
           </div>

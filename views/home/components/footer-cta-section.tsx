@@ -87,7 +87,7 @@ const FooterCtaSection = () => {
             text={"Create free account"}
             href={"https://app.vendibly.ai/auth/signup"}
             icon={<IconArrowRightUp />}
-            iconSize={24}
+            iconSize={18}
             className="rounded-xl mt-5 md:mt-8 h-14"
             moveUp
           />

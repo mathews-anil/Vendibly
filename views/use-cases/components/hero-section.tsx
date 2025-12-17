@@ -58,6 +58,7 @@ export function HeroSection({ useCase, theme }: HeroSectionProps) {
               "h-16 px-10 text-xl font-bold shadow-xl rounded-2xl border-none",
               theme.button
             )}
+            iconSize={18}
           />
           {useCase.heroFooterText && (
             <span className="text-sm font-medium text-foreground-copy/50">
