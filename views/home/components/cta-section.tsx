@@ -51,7 +51,7 @@ const CtaSection = () => {
               href={"https://app.vendibly.ai/auth/signup"}
               className=" bg-app-slate mt-8 hover:shadow-[0px_10px_20px_rgba(55,65,81,0.25)]"
               icon={<IconArrowRightUp className="w-6 h-6" />}
-              iconSize={24}
+              iconSize={18}
               moveUp
             />
           </div>

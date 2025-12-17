@@ -28,10 +28,10 @@ export function FinalCtaSection({ data, theme }: FinalCtaSectionProps) {
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px]" />
 
           <div className="relative z-10 max-w-5xl mx-auto">
-            <h2 className="text-5xl md:text-6xl lg:text-8xl font-bold font-outfit text-white mb-12 leading-[1.05]">
+            <h2 className="text-6xl md:text-7xl lg:text-[90px] font-bold font-outfit text-white mb-8 leading-[1.05] tracking-tight">
               {data.heading}
             </h2>
-            <p className="text-2xl text-white/60 mb-16 max-w-3xl mx-auto font-outfit">
+            <p className="text-2xl md:text-3xl text-white/60 mb-16 max-w-3xl mx-auto leading-relaxed font-light">
               {data.subheading}
             </p>
 
@@ -40,10 +40,11 @@ export function FinalCtaSection({ data, theme }: FinalCtaSectionProps) {
                 text={data.buttonText || "Start free"}
                 href={data.buttonUrl || "https://app.vendibly.ai"}
                 className={cn(
-                  "h-20 px-12 text-2xl font-bold bg-white hover:bg-gray-100 border-none rounded-2xl",
+                  "h-20 px-12 text-xl font-bold bg-white hover:bg-gray-100 border-none rounded-2xl",
                   theme.primaryText
                 )}
                 icon={<IconArrowRight />}
+                iconSize={18}
               />
               {data.footerText && (
                 <span className="text-white/40 text-base font-medium">

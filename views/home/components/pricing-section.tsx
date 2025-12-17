@@ -10,6 +10,7 @@ import LinkButton from "@/components/ui/linkButton";
 import { cn } from "@/lib/utils";
 import { useGSAP } from "@gsap/react";
 import gsap, { Power4 } from "gsap";
+import Link from "next/link";
 import { useRef } from "react";
 
 const pricing = [
@@ -17,7 +18,18 @@ const pricing = [
     title: "Free",
     price: "0.00",
     priceSuffix: "/ Month",
-    subtitle: "For getting started with vendor control.",
+    subtitle: (
+      <>
+        For getting started with{" "}
+        <Link
+          href="/vendors"
+          className="hover:text-app-green transition-colors font-semibold"
+        >
+          vendor
+        </Link>{" "}
+        control.
+      </>
+    ),
     features: [
       "Manage up to 5 vendors",
       "Smart renewal reminders",
@@ -37,7 +49,15 @@ const pricing = [
     priceSuffix: "/ Month billed annually",
     subtitle: "For power users and solo founders.",
     features: [
-      "Unlimited vendors",
+      <>
+        Unlimited{" "}
+        <Link
+          href="/vendors"
+          className="hover:text-app-green transition-colors font-semibold"
+        >
+          vendors
+        </Link>
+      </>,
       "Automatic inbox sync with renewal alerts",
       "AI-powered contract summaries",
       "Full renewal calendar view",

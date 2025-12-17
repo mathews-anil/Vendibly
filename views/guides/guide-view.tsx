@@ -139,15 +139,18 @@ export default function GuideView({ guide }: { guide: Guide }) {
                   </p>
                   <LinkButton
                     text={
-                      guide.settings?.bottomCta?.buttonText ||
+                      guide.settings?.bottomCta?.buttonText ===
                       "Get Started for Free"
+                        ? "Create free account"
+                        : guide.settings?.bottomCta?.buttonText ||
+                          "Create free account"
                     }
                     href={
                       guide.settings?.bottomCta?.buttonUrl ||
                       "https://app.vendibly.ai/signup"
                     }
                     icon={<IconArrowRight />}
-                    iconSize={24}
+                    iconSize={18}
                     className="bg-white text-app-blue hover:bg-white/90 border-none font-bold px-6 py-3 md:px-8 md:py-4 h-auto text-base md:text-lg w-full md:w-auto justify-center"
                   />
                 </div>

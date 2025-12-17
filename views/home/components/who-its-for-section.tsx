@@ -312,8 +312,14 @@ const WhoItForSection = ({
                   className="items-start text-left mb-2.5 lg:mb-4"
                 />
                 <p className="text-copy mb-5 md:mb-7 lg:mb-10">
-                  Everything you need to control your subscriptions and vendors,
-                  in one smart dashboard.
+                  Everything you need to control your subscriptions and{" "}
+                  <Link
+                    href="/vendors"
+                    className="hover:text-app-green transition-colors"
+                  >
+                    vendors
+                  </Link>
+                  , in one smart dashboard.
                 </p>
                 <LinkButton
                   text="Create free account"

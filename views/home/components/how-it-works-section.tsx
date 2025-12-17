@@ -8,12 +8,23 @@ import { StepLine1, StepLine2 } from "@/components/ui/StepLines";
 import { cn } from "@/lib/utils";
 import { useGSAP } from "@gsap/react";
 import gsap, { Power4 } from "gsap";
+import Link from "next/link";
 import { useRef } from "react";
 
 const process = [
   {
     step: "Step 1",
-    title: "Add your vendors",
+    title: (
+      <>
+        Add your{" "}
+        <Link
+          href="/vendors"
+          className="hover:text-app-orange transition-colors"
+        >
+          vendors
+        </Link>
+      </>
+    ),
     description:
       "Connect your email and Vendibly auto-detects your subscriptions and invoices.",
     color: "#ff6a3d",
