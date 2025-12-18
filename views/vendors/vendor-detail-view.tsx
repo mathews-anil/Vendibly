@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { client } from "@/sanity/lib/client";
+import { clientWithoutCdn } from "@/sanity/lib/client";
 import { vendorBySlugQuery } from "@/sanity/lib/queries";
 import VendorHero from "./components/vendor-hero";
 import VendorFeatureList from "./components/vendor-feature-list";
@@ -29,11 +29,10 @@ export default function VendorDetailView({
   const { data: vendor } = useQuery({
     queryKey: ["vendor", slug],
     queryFn: async () => {
-      return await client.fetch(vendorBySlugQuery, { slug });
+      return await clientWithoutCdn.fetch(vendorBySlugQuery, { slug });
     },
     initialData: initialVendor,
-    refetchOnWindowFocus:true,
-    refetchOnReconnect:true
+    staleTime: 60 * 1000,
   });
 
   const {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { client } from "@/sanity/lib/client";
+import { clientWithoutCdn } from "@/sanity/lib/client";
 import { guideBySlugQuery } from "@/sanity/lib/queries";
 import { Guide } from "@/types";
 import LinkButton from "@/components/ui/linkButton";
@@ -20,11 +20,10 @@ export default function GuideView({
   const { data: guide } = useQuery({
     queryKey: ["guide", slug],
     queryFn: async () => {
-      return await client.fetch<Guide>(guideBySlugQuery, { slug });
+      return await clientWithoutCdn.fetch<Guide>(guideBySlugQuery, { slug });
     },
     initialData: initialGuide,
-    refetchOnReconnect: true,
-    refetchOnWindowFocus: true,
+    staleTime: 60 * 1000,
   });
 
   const [activeHash, setActiveHash] = useState<string>("");

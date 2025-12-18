@@ -77,7 +77,7 @@ export default function VendorHubView({
     const element = document.getElementById(id);
     if (element) {
       window.scrollTo({
-        top: element.offsetTop - 120,
+        top: element.offsetTop + 560,
         behavior: "smooth",
       });
     }

@@ -35,4 +35,3 @@ export default async function VendorsPage() {
   );
 }
 
-export const revalidate = 60;
