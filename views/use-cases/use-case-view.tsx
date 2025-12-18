@@ -27,6 +27,8 @@ export default function UseCaseView({
       return await client.fetch(useCaseBySlugQuery, { slug });
     },
     initialData: initialUseCase,
+    refetchOnReconnect: true,
+    refetchOnWindowFocus: true,
   });
 
   const theme = useUseCaseTheme(useCase.theme);

@@ -9,7 +9,6 @@ import IconArrowRight from "@/components/icons/icon-arrow-right";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
 import { PortableText } from "@portabletext/react";
-import { urlFor } from "@/sanity/lib/image";
 
 export default function GuideView({
   guide: initialGuide,
@@ -24,6 +23,8 @@ export default function GuideView({
       return await client.fetch<Guide>(guideBySlugQuery, { slug });
     },
     initialData: initialGuide,
+    refetchOnReconnect: true,
+    refetchOnWindowFocus: true,
   });
 
   const [activeHash, setActiveHash] = useState<string>("");
