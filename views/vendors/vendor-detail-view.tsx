@@ -32,6 +32,8 @@ export default function VendorDetailView({
       return await client.fetch(vendorBySlugQuery, { slug });
     },
     initialData: initialVendor,
+    refetchOnWindowFocus:true,
+    refetchOnReconnect:true
   });
 
   const {
