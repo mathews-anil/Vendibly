@@ -1,5 +1,7 @@
-import Home from "@/views/home";
+import Home, { UseCase, FeaturedGuide } from "@/views/home";
 import { client } from "@/sanity/lib/client";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { getQueryClient } from "@/lib/query-client";
 
 const useCasesQuery = `*[_type == "useCase" && defined(category)] | order(category asc) {
   title,
@@ -24,10 +26,23 @@ const featuredGuidesQuery = `*[_type == "guide" && featured == true] | order(_cr
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const [useCases, featuredGuides] = await Promise.all([
-    client.fetch(useCasesQuery),
-    client.fetch(featuredGuidesQuery),
+  const queryClient = getQueryClient();
+
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryKey: ["use-cases-home"],
+      queryFn: () => client.fetch(useCasesQuery),
+    }),
+    queryClient.prefetchQuery({
+      queryKey: ["featured-guides-home"],
+      queryFn: () => client.fetch(featuredGuidesQuery),
+    }),
   ]);
+
+  const useCases = queryClient.getQueryData(["use-cases-home"]) as UseCase[];
+  const featuredGuides = queryClient.getQueryData([
+    "featured-guides-home",
+  ]) as FeaturedGuide[];
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -178,12 +193,12 @@ export default async function HomePage() {
   };
 
   return (
-    <>
+    <HydrationBoundary state={dehydrate(queryClient)}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Home useCases={useCases} featuredGuides={featuredGuides} />
-    </>
+    </HydrationBoundary>
   );
 }

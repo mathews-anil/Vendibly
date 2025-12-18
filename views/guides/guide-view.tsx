@@ -1,13 +1,31 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
+import { client } from "@/sanity/lib/client";
+import { guideBySlugQuery } from "@/sanity/lib/queries";
 import { Guide } from "@/types";
 import LinkButton from "@/components/ui/linkButton";
 import IconArrowRight from "@/components/icons/icon-arrow-right";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
 import { PortableText } from "@portabletext/react";
+import { urlFor } from "@/sanity/lib/image";
 
-export default function GuideView({ guide }: { guide: Guide }) {
+export default function GuideView({
+  guide: initialGuide,
+  slug,
+}: {
+  guide: Guide;
+  slug: string;
+}) {
+  const { data: guide } = useQuery({
+    queryKey: ["guide", slug],
+    queryFn: async () => {
+      return await client.fetch<Guide>(guideBySlugQuery, { slug });
+    },
+    initialData: initialGuide,
+  });
+
   const [activeHash, setActiveHash] = useState<string>("");
 
   useEffect(() => {

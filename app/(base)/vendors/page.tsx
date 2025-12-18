@@ -1,7 +1,9 @@
 import { sanityFetch } from "@/sanity/lib/live";
 import { vendorCategoriesQuery } from "@/sanity/lib/queries";
-import VendorHubView from "@/views/vendors/vendor-hub-view";
+import VendorHubView, { VendorCategory } from "@/views/vendors/vendor-hub-view";
 import { Metadata } from "next";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { getQueryClient } from "@/lib/query-client";
 
 export const metadata: Metadata = {
   title: "Supported Vendors | Vendibly",
@@ -10,9 +12,27 @@ export const metadata: Metadata = {
 };
 
 export default async function VendorsPage() {
-  const { data: categories } = await sanityFetch({
-    query: vendorCategoriesQuery,
+  const queryClient = getQueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ["vendor-categories"],
+    queryFn: async () => {
+      const { data: categories } = await sanityFetch({
+        query: vendorCategoriesQuery,
+      });
+      return (categories || []) as VendorCategory[];
+    },
   });
 
-  return <VendorHubView categories={categories || []} />;
+  const categories = queryClient.getQueryData([
+    "vendor-categories",
+  ]) as VendorCategory[];
+
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <VendorHubView categories={categories || []} />
+    </HydrationBoundary>
+  );
 }
+
+export const revalidate = 60;

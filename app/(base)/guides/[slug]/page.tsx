@@ -5,6 +5,8 @@ import { client } from "@/sanity/lib/client";
 import { guideBySlugQuery } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import { Guide } from "@/types";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { getQueryClient } from "@/lib/query-client";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -43,7 +45,16 @@ export async function generateMetadata({
 
 export default async function GuidePage({ params }: PageProps) {
   const { slug } = await params;
-  const guide = await client.fetch<Guide>(guideBySlugQuery, { slug });
+  const queryClient = getQueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ["guide", slug],
+    queryFn: async () => {
+      return await client.fetch<Guide>(guideBySlugQuery, { slug });
+    },
+  });
+
+  const guide = queryClient.getQueryData<Guide>(["guide", slug]);
 
   if (!guide) {
     notFound();
@@ -79,12 +90,12 @@ export default async function GuidePage({ params }: PageProps) {
   };
 
   return (
-    <>
+    <HydrationBoundary state={dehydrate(queryClient)}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <GuideView guide={guide} />
-    </>
+      <GuideView guide={guide} slug={slug} />
+    </HydrationBoundary>
   );
 }

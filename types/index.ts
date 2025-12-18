@@ -32,3 +32,31 @@ export interface Guide {
   _createdAt?: string;
   _updatedAt?: string;
 }
+
+export interface UseCase {
+  title: string;
+  slug: string;
+  theme: string;
+  heroBadge?: string;
+  heroHeading: string;
+  heroSubheading: string;
+  heroButtonText?: string;
+  heroButtonUrl?: string;
+  heroFooterText?: string;
+  problemSection?: any;
+  stackSection?: any;
+  solutionSection?: any;
+  scenariosSection?: any;
+  pricingSection?: any;
+  faqSection?: any;
+  finalCTA?: any;
+  seoTitle?: string;
+  seoDescription?: string;
+  _createdAt: string;
+  _updatedAt: string;
+  heroImage?: {
+    asset?: {
+      url: string;
+    };
+  };
+}
