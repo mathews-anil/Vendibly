@@ -81,7 +81,6 @@ export default function VendorHero({
             </div>
 
             <h1 className="text-4xl md:text-6xl font-bold font-outfit text-white mb-6 leading-[1.1] tracking-tight">
-              Connect Vendibly with <br className="hidden md:block" />
               <span className="text-white">{title}</span>
             </h1>
 

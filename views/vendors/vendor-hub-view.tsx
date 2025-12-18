@@ -38,6 +38,8 @@ export default function VendorHubView({
       return (fetchedCategories || []) as VendorCategory[];
     },
     initialData: initialCategories,
+    refetchOnReconnect: true,
+    refetchOnWindowFocus: true,
   });
 
   const [activeCategory, setActiveCategory] = useState<string>("");
