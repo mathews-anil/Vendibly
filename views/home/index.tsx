@@ -1,3 +1,5 @@
+"use client";
+
 import MultiSectionSVG from "@/components/multi-section-svg";
 import CtaSection from "@/views/home/components/cta-section";
 import FaqSection from "@/views/home/components/faq-section";
@@ -9,15 +11,17 @@ import TestimonialSection from "@/views/home/components/testimonial-section";
 import WhoItForSection from "@/views/home/components/who-its-for-section";
 import Image from "next/image";
 import FooterCtaSection from "./components/footer-cta-section";
+import { useQuery } from "@tanstack/react-query";
+import { client } from "@/sanity/lib/client";
 
-interface UseCase {
+export interface UseCase {
   title: string;
   slug: string;
   category: string;
   shortDescription?: string;
 }
 
-interface FeaturedGuide {
+export interface FeaturedGuide {
   title: string;
   slug: string;
   shortDescription?: string;
@@ -29,7 +33,42 @@ interface HomeProps {
   featuredGuides: FeaturedGuide[];
 }
 
-const Home = ({ useCases, featuredGuides }: HomeProps) => {
+const useCasesQuery = `*[_type == "useCase" && defined(category)] | order(category asc) {
+  title,
+  "slug": slug.current,
+  category,
+  shortDescription,
+  cardIcon {
+    asset->{
+      url
+    },
+    alt
+  }
+}`;
+
+const featuredGuidesQuery = `*[_type == "guide" && featured == true] | order(_createdAt desc) [0...4] {
+  title,
+  "slug": slug.current,
+  shortDescription,
+  icon
+}`;
+
+const Home = ({
+  useCases: initialUseCases,
+  featuredGuides: initialFeaturedGuides,
+}: HomeProps) => {
+  const { data: useCases } = useQuery({
+    queryKey: ["use-cases-home"],
+    queryFn: () => client.fetch(useCasesQuery),
+    initialData: initialUseCases,
+  });
+
+  const { data: featuredGuides } = useQuery({
+    queryKey: ["featured-guides-home"],
+    queryFn: () => client.fetch(featuredGuidesQuery),
+    initialData: initialFeaturedGuides,
+  });
+
   return (
     <>
       <HeroSection />

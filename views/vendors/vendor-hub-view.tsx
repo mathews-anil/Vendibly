@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { client } from "@/sanity/lib/client";
+import { vendorCategoriesQuery } from "@/sanity/lib/queries";
 import HubHero from "./components/hub/hub-hero";
 import HubMobileNav from "./components/hub/hub-mobile-nav";
 import HubSidebar from "./components/hub/hub-sidebar";
@@ -25,12 +28,23 @@ interface VendorHubViewProps {
   categories: VendorCategory[];
 }
 
-export default function VendorHubView({ categories }: VendorHubViewProps) {
+export default function VendorHubView({
+  categories: initialCategories,
+}: VendorHubViewProps) {
+  const { data: categories } = useQuery({
+    queryKey: ["vendor-categories"],
+    queryFn: async () => {
+      const fetchedCategories = await client.fetch(vendorCategoriesQuery);
+      return (fetchedCategories || []) as VendorCategory[];
+    },
+    initialData: initialCategories,
+  });
+
   const [activeCategory, setActiveCategory] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredCategories = categories
-    .map((cat) => ({
+    .map((cat: VendorCategory) => ({
       ...cat,
       vendors: cat.vendors.filter(
         (v) =>

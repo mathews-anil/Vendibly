@@ -1,5 +1,8 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
+import { client } from "@/sanity/lib/client";
+import { useCaseBySlugQuery } from "@/sanity/lib/queries";
 import { useUseCaseTheme } from "./hooks/use-use-case-theme";
 import { HeroSection } from "./components/hero-section";
 import { ProblemSection } from "./components/problem-section";
@@ -9,8 +12,23 @@ import { ScenariosSection } from "./components/scenarios-section";
 import { PricingSection } from "./components/pricing-section";
 import { FaqSection } from "./components/faq-section";
 import { FinalCtaSection } from "./components/final-cta-section";
+import { UseCase } from "@/types";
 
-export default function UseCaseView({ useCase }: { useCase: any }) {
+export default function UseCaseView({
+  useCase: initialUseCase,
+  slug,
+}: {
+  useCase: UseCase;
+  slug: string;
+}) {
+  const { data: useCase } = useQuery({
+    queryKey: ["use-case", slug],
+    queryFn: async () => {
+      return await client.fetch(useCaseBySlugQuery, { slug });
+    },
+    initialData: initialUseCase,
+  });
+
   const theme = useUseCaseTheme(useCase.theme);
 
   return (

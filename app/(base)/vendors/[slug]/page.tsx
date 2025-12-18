@@ -1,8 +1,12 @@
 import { sanityFetch } from "@/sanity/lib/live";
 import { vendorBySlugQuery } from "@/sanity/lib/queries";
-import VendorDetailView from "@/views/vendors/vendor-detail-view";
+import VendorDetailView, {
+  VendorDetailData,
+} from "@/views/vendors/vendor-detail-view";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { getQueryClient } from "@/lib/query-client";
 
 export async function generateMetadata({
   params,
@@ -47,21 +51,33 @@ export default async function VendorDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const { data: vendor } = await sanityFetch({
-    query: vendorBySlugQuery,
-    params: { slug },
+  const queryClient = getQueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ["vendor", slug],
+    queryFn: async () => {
+      const { data: vendor } = await sanityFetch({
+        query: vendorBySlugQuery,
+        params: { slug },
+      });
+      return vendor;
+    },
   });
+
+  const vendor = queryClient.getQueryData(["vendor", slug]);
 
   if (!vendor) {
     notFound();
   }
 
+  const typedVendor = vendor as VendorDetailData;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: vendor.title,
-    applicationCategory: vendor.category,
-    description: vendor.shortDescription,
+    name: typedVendor.title,
+    applicationCategory: typedVendor.category,
+    description: typedVendor.shortDescription,
     operatingSystem: "Cloud/SaaS",
     offers: {
       "@type": "Offer",
@@ -71,12 +87,12 @@ export default async function VendorDetailPage({
   };
 
   return (
-    <>
+    <HydrationBoundary state={dehydrate(queryClient)}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <VendorDetailView vendor={vendor} />
-    </>
+      <VendorDetailView vendor={typedVendor} slug={slug} />
+    </HydrationBoundary>
   );
 }
