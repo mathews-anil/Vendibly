@@ -12,7 +12,7 @@ import WhoItForSection from "@/views/home/components/who-its-for-section";
 import Image from "next/image";
 import FooterCtaSection from "./components/footer-cta-section";
 import { useQuery } from "@tanstack/react-query";
-import { client } from "@/sanity/lib/client";
+import { clientWithoutCdn } from "@/sanity/lib/client";
 
 export interface UseCase {
   title: string;
@@ -59,14 +59,16 @@ const Home = ({
 }: HomeProps) => {
   const { data: useCases } = useQuery({
     queryKey: ["use-cases-home"],
-    queryFn: () => client.fetch(useCasesQuery),
+    queryFn: () => clientWithoutCdn.fetch(useCasesQuery),
     initialData: initialUseCases,
+    staleTime: 60 * 1000, // Consider data fresh for 60 seconds
   });
 
   const { data: featuredGuides } = useQuery({
     queryKey: ["featured-guides-home"],
-    queryFn: () => client.fetch(featuredGuidesQuery),
+    queryFn: () => clientWithoutCdn.fetch(featuredGuidesQuery),
     initialData: initialFeaturedGuides,
+    staleTime: 60 * 1000, // Consider data fresh for 60 seconds
   });
 
   return (

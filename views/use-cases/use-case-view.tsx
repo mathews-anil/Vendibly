@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { client } from "@/sanity/lib/client";
+import { clientWithoutCdn } from "@/sanity/lib/client";
 import { useCaseBySlugQuery } from "@/sanity/lib/queries";
 import { useUseCaseTheme } from "./hooks/use-use-case-theme";
 import { HeroSection } from "./components/hero-section";
@@ -24,11 +24,10 @@ export default function UseCaseView({
   const { data: useCase } = useQuery({
     queryKey: ["use-case", slug],
     queryFn: async () => {
-      return await client.fetch(useCaseBySlugQuery, { slug });
+      return await clientWithoutCdn.fetch(useCaseBySlugQuery, { slug });
     },
     initialData: initialUseCase,
-    refetchOnReconnect: true,
-    refetchOnWindowFocus: true,
+    staleTime: 60 * 1000, // Consider data fresh for 60 seconds
   });
 
   const theme = useUseCaseTheme(useCase.theme);

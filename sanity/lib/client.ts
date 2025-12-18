@@ -8,3 +8,11 @@ export const client = createClient({
   apiVersion,
   useCdn: true, // Set to false if statically generating pages, using ISR or tag-based revalidation
 })
+
+// Client without CDN for fetching fresh data (use when consistency matters)
+export const clientWithoutCdn = createClient({
+  projectId,
+  dataset,
+  apiVersion,
+  useCdn: false,
+})
