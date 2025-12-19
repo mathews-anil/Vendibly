@@ -81,7 +81,9 @@ export default function VendorHero({
             </div>
 
             <h1 className="text-4xl md:text-6xl font-bold font-outfit text-white mb-6 leading-[1.1] tracking-tight">
-              <span className="text-white">{title}</span>
+              <span className="text-white">
+                {title} Subscription & Renewal Tracking
+              </span>
             </h1>
 
             <p className="text-lg md:text-xl text-white/70 leading-relaxed font-light max-w-2xl mx-auto md:mx-0">
