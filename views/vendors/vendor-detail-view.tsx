@@ -66,14 +66,14 @@ export default function VendorDetailView({
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-bold mb-6 font-outfit text-app-blue">
-            Track your {title} subscription
+            Track your {title} subscription and renewals
           </h2>
           <p className="text-foreground-copy/70 mb-10 max-w-2xl mx-auto text-lg">
             Vendibly keeps your invoices organized and warns you before
             renewals.
           </p>
           <a
-            href="#"
+            href="https://app.vendibly.ai/auth/signup"
             className="inline-flex items-center justify-center bg-app-blue text-white font-bold px-10 py-4 rounded-full hover:bg-app-blue/90 transition-all hover:scale-105 shadow-xl shadow-app-blue/20"
           >
             Start free with Vendibly
