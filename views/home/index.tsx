@@ -61,14 +61,12 @@ const Home = ({
     queryKey: ["use-cases-home"],
     queryFn: () => clientWithoutCdn.fetch(useCasesQuery),
     initialData: initialUseCases,
-    staleTime: 60 * 1000, // Consider data fresh for 60 seconds
   });
 
   const { data: featuredGuides } = useQuery({
     queryKey: ["featured-guides-home"],
     queryFn: () => clientWithoutCdn.fetch(featuredGuidesQuery),
     initialData: initialFeaturedGuides,
-    staleTime: 60 * 1000, // Consider data fresh for 60 seconds
   });
 
   return (

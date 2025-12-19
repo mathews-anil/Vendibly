@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { client } from "@/sanity/lib/client";
+import { clientWithoutCdn } from "@/sanity/lib/client";
 import { vendorCategoriesQuery } from "@/sanity/lib/queries";
 import HubHero from "./components/hub/hub-hero";
 import HubMobileNav from "./components/hub/hub-mobile-nav";
@@ -34,7 +34,9 @@ export default function VendorHubView({
   const { data: categories } = useQuery({
     queryKey: ["vendor-categories"],
     queryFn: async () => {
-      const fetchedCategories = await client.fetch(vendorCategoriesQuery);
+      const fetchedCategories = await clientWithoutCdn.fetch(
+        vendorCategoriesQuery
+      );
       return (fetchedCategories || []) as VendorCategory[];
     },
     initialData: initialCategories,

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import GuideView from "@/views/guides/guide-view";
 import { Metadata } from "next";
-import { client } from "@/sanity/lib/client";
+import { clientWithoutCdn } from "@/sanity/lib/client";
 import { guideBySlugQuery } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import { Guide } from "@/types";
@@ -16,7 +16,7 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const guide = await client.fetch<Guide>(guideBySlugQuery, { slug });
+  const guide = await clientWithoutCdn.fetch<Guide>(guideBySlugQuery, { slug });
 
   if (!guide) {
     return {
@@ -50,7 +50,7 @@ export default async function GuidePage({ params }: PageProps) {
   await queryClient.prefetchQuery({
     queryKey: ["guide", slug],
     queryFn: async () => {
-      return await client.fetch<Guide>(guideBySlugQuery, { slug });
+      return await clientWithoutCdn.fetch<Guide>(guideBySlugQuery, { slug });
     },
   });
 
