@@ -1,4 +1,4 @@
-import { sanityFetch } from "@/sanity/lib/live";
+import { clientWithoutCdn } from "@/sanity/lib/client";
 import { vendorBySlugQuery } from "@/sanity/lib/queries";
 import VendorDetailView, {
   VendorDetailData,
@@ -14,10 +14,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const { data: vendor } = await sanityFetch({
-    query: vendorBySlugQuery,
-    params: { slug },
-  });
+  const vendor = await clientWithoutCdn.fetch(vendorBySlugQuery, { slug });
 
   if (!vendor) {
     return {
@@ -56,10 +53,7 @@ export default async function VendorDetailPage({
   await queryClient.prefetchQuery({
     queryKey: ["vendor", slug],
     queryFn: async () => {
-      const { data: vendor } = await sanityFetch({
-        query: vendorBySlugQuery,
-        params: { slug },
-      });
+      const vendor = await clientWithoutCdn.fetch(vendorBySlugQuery, { slug });
       return vendor;
     },
   });

@@ -1,5 +1,5 @@
 import Home, { UseCase, FeaturedGuide } from "@/views/home";
-import { client } from "@/sanity/lib/client";
+import { clientWithoutCdn } from "@/sanity/lib/client";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { getQueryClient } from "@/lib/query-client";
 
@@ -31,11 +31,11 @@ export default async function HomePage() {
   await Promise.all([
     queryClient.prefetchQuery({
       queryKey: ["use-cases-home"],
-      queryFn: () => client.fetch(useCasesQuery),
+      queryFn: () => clientWithoutCdn.fetch(useCasesQuery),
     }),
     queryClient.prefetchQuery({
       queryKey: ["featured-guides-home"],
-      queryFn: () => client.fetch(featuredGuidesQuery),
+      queryFn: () => clientWithoutCdn.fetch(featuredGuidesQuery),
     }),
   ]);
 

@@ -1,5 +1,5 @@
 import { generateJsonLd } from "@/lib/seo";
-import { client } from "@/sanity/lib/client";
+import { clientWithoutCdn } from "@/sanity/lib/client";
 import { useCaseBySlugQuery } from "@/sanity/lib/queries";
 import UseCaseView from "@/views/use-cases/use-case-view";
 import { Metadata } from "next";
@@ -17,7 +17,7 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const useCase = await client.fetch(useCaseBySlugQuery, { slug });
+  const useCase = await clientWithoutCdn.fetch(useCaseBySlugQuery, { slug });
 
   if (!useCase) {
     return {
@@ -44,7 +44,7 @@ export default async function UseCaseDetailPage({
   await queryClient.prefetchQuery({
     queryKey: ["use-case", slug],
     queryFn: async () => {
-      return await client.fetch(useCaseBySlugQuery, { slug });
+      return await clientWithoutCdn.fetch(useCaseBySlugQuery, { slug });
     },
   });
 

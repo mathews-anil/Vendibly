@@ -1,4 +1,4 @@
-import { sanityFetch } from "@/sanity/lib/live";
+import { clientWithoutCdn } from "@/sanity/lib/client";
 import { vendorCategoriesQuery } from "@/sanity/lib/queries";
 import VendorHubView, { VendorCategory } from "@/views/vendors/vendor-hub-view";
 import { Metadata } from "next";
@@ -17,9 +17,7 @@ export default async function VendorsPage() {
   await queryClient.prefetchQuery({
     queryKey: ["vendor-categories"],
     queryFn: async () => {
-      const { data: categories } = await sanityFetch({
-        query: vendorCategoriesQuery,
-      });
+      const categories = await clientWithoutCdn.fetch(vendorCategoriesQuery);
       return (categories || []) as VendorCategory[];
     },
   });
@@ -34,4 +32,3 @@ export default async function VendorsPage() {
     </HydrationBoundary>
   );
 }
-
