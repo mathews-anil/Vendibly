@@ -44,6 +44,8 @@ export default async function HomePage() {
     "featured-guides-home",
   ]) as FeaturedGuide[];
 
+  // Structured data: SaaS app + pricing tiers + FAQ.
+  // IMPORTANT: Do not use @type "Product" for SaaS. That triggers Merchant Listings + Product snippets requirements.
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -52,25 +54,29 @@ export default async function HomePage() {
         name: "Vendibly",
         description:
           "Vendibly scans your inbox to track subscriptions, renewals, invoices, and contracts automatically.",
-        applicationCategory: "Subscription management software",
+        applicationCategory: "BusinessApplication",
         operatingSystem: "Web",
         url: "https://www.vendibly.ai",
-        offers: {
-          "@type": "Offer",
-          price: "0",
-          priceCurrency: "USD",
-        },
-      },
-      {
-        "@type": "Product",
-        name: "Vendibly Pro",
-        description: "Subscription tracking and SaaS renewal management tool.",
-        offers: {
-          "@type": "Offer",
-          price: "29",
-          priceCurrency: "USD",
-          availability: "http://schema.org/InStock",
-        },
+        offers: [
+          {
+            "@type": "Offer",
+            name: "Vendibly Free",
+            price: "0",
+            priceCurrency: "USD",
+            priceValidUntil: "2026-12-31",
+            availability: "https://schema.org/InStock",
+            url: "https://www.vendibly.ai",
+          },
+          {
+            "@type": "Offer",
+            name: "Vendibly Pro",
+            price: "29",
+            priceCurrency: "USD",
+            priceValidUntil: "2026-12-31",
+            availability: "https://schema.org/InStock",
+            url: "https://www.vendibly.ai",
+          },
+        ],
       },
       {
         "@type": "FAQPage",
@@ -179,14 +185,6 @@ export default async function HomePage() {
               text: "Vendibly’s AI engine identifies subscription-related emails with high accuracy. It prioritizes invoice attachments, then email bodies, to extract vendor names, amounts, billing cycles, and renewal dates.",
             },
           },
-          // {
-          //   "@type": "Question",
-          //   "name": "Can I export my subscription data?",
-          //   "acceptedAnswer": {
-          //     "@type": "Answer",
-          //     "text": "Yes. You can export your subscriptions and renewal calendar as CSV or PDF for reporting, budgeting, or internal reviews."
-          //   }
-          // }
         ],
       },
     ],
